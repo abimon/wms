@@ -16,9 +16,10 @@ class BeneficiaryController extends Controller
     {
         Beneficiary::create([
             'u_id'=>request()->u_id,
+            'b_age'=>request()->b_age,
+            'rel'=>request()->rel,
             'b_name'=>request()->b_name,
         ]);
-        $ben = Beneficiary::where('u_id',request()->u_id)->get();
         return response()->json(['message'=>'Beneficiary added successifully'],201);
     }
     public function store(Request $request)
