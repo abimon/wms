@@ -55,9 +55,9 @@ class ContributionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contribution $contribution)
+    public function show($id)
     {
-        //
+        return Contribution::where('u_id',$id)->orderBy('id','desc')->get();
     }
 
     /**

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('u_id');
             $table->string('b_name');
             $table->string('b_age');
-            $table->integer('rel');
+            $table->string('rel');
             $table->boolean('isConfirmed')->default(true);
             $table->timestamps();
         });
