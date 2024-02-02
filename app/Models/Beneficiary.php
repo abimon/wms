@@ -11,7 +11,7 @@ class Beneficiary extends Model
     protected $fillable = [
         'u_id',
         'b_age',
-        'relationship',
+        'rel',
         'b_name',
     ];
 }
