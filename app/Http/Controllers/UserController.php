@@ -20,7 +20,8 @@ class UserController extends Controller
             'contact'=>request()->contact,
             'password'=>Hash::make(request()->password),
         ]);
-        return response()->json($user, 201);
+        $data = User::findOrFail($user->id);
+        return response()->json($data, 201);
     }
 
     public function login()
