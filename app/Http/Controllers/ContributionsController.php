@@ -44,7 +44,7 @@ class ContributionsController extends Controller
                     ->attachData($pdf->output(), date('d/m/Y') . "_receipt.pdf");
             }
         );
-        return response()->json(['message'=>($user->name).' Contribution record success']);
+        return response()->json(['message'=>($user->name).' Contribution record success'],201);
     }
 
     public function store(Request $request)
