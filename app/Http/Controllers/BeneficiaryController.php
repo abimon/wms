@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class BeneficiaryController extends Controller
 {
-    public function index($id)
+    public function index()
     {
-        return Beneficiary::where('u_id',$id)->orderBy('b_name','asc')->get();
+        return Beneficiary::all();
     }
 
     public function create()
@@ -29,7 +29,7 @@ class BeneficiaryController extends Controller
 
     public function show($id)
     {
-        return Beneficiary::findOrFail($id);
+        return Beneficiary::where('u_id',$id)->get();
     }
 
     public function edit()

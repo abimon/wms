@@ -39,7 +39,7 @@ Route::controller(ContributionsController::class)->prefix('/account/')->group(fu
     Route::post('create','create');
 });
 Route::controller(BeneficiaryController::class)->prefix('/beneficiary/')->group(function(){
-    Route::get('index/{id}','index');
+    Route::get('index','index');
     Route::get('destroy/{id}','destroy');
     Route::get('show/{id}','show');
     Route::post('create','create');
