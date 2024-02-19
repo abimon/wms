@@ -68,16 +68,35 @@ class ContributionsController extends Controller
         //
     }
 
-    public function update(Request $request, Contribution $contribution)
+    public function update($id)
     {
-        //
+        $cont=Contribution::where('id',$id)->update([
+            'amount'=>request()->amount,
+            'description'=>request()->description,
+            'status'=>request()->status
+        ]);
+        $user=User::findOrFail(request()->u_id);
+        $data = [
+            'name' => $user->name,
+            'account' => request()->description,
+            'serial' => 'WSM/'.time().'/'.($cont->id),
+            'sum' => request()->amount,
+        ];
+        
+        $pdf = Pdf::loadView('mail.receipt', $data);
+        $pdf->setPaper('A5', 'landscape');
+        Mail::send(
+            'mail.message',
+            $data,
+            function ($message) use ($pdf, $user) {
+                $message->to($user->email, $user->name)->subject('Receipt update for ' . date('d/m/Y'))
+                    ->attachData($pdf->output(), date('d/m/Y') . "_update_receipt.pdf");
+            }
+        );
+        return response()->json(['message'=>($user->name).' Contribution record success'],200);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Contribution $contribution)
+    public function destroy($id)
     {
-        //
+        Contribution::destroy($id);
     }
 }
