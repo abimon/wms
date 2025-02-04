@@ -18,6 +18,7 @@ class UserController extends Controller
             'name'=>request()->name,
             'email'=>request()->email,
             'contact'=>request()->contact,
+            'role'=>request()->role,
             'password'=>Hash::make(request()->password),
         ]);
         $data = User::findOrFail($user->id);
