@@ -6,7 +6,6 @@
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
         <div class="mb-3">
             <label for="name" class=" col-form-label text-md-end">{{ __('Name') }}</label>
 
