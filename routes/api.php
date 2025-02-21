@@ -1,9 +1,5 @@
 <?php
-
-use App\Http\Controllers\BeneficiaryController;
-use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\UserController;
-use App\Models\Beneficiary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,19 +26,4 @@ Route::controller(UserController::class)->prefix('/user/')->group(function(){
     Route::post('edit/{id}','edit'); //edit next of kin
     Route::post('update/{id}','update'); //update user details
     Route::get('show/{id}','show'); // show user account
-});
-Route::controller(ContributionsController::class)->prefix('/account/')->group(function(){
-    Route::get('index','index');
-    Route::get('show/{id}','show');
-    Route::get('destroy/{id}','destroy');
-    Route::post('update/{id}','update');
-    Route::post('create','create');
-});
-Route::controller(BeneficiaryController::class)->prefix('/beneficiary/')->group(function(){
-    Route::get('index','index');
-    Route::get('destroy/{id}','destroy');
-    Route::get('show/{id}','show');
-    Route::post('create','create');
-    Route::post('update/{id}','update');
-
 });
