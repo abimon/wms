@@ -194,17 +194,16 @@
                                                 <input type="number" class="form-control" id="speed_limit" name="speed_limit"
                                                     value="{{ $polygon->speed_limit }}">
                                             </div>
-                                            @for($j = 0; $j < 8; $j++)
-                                                <div class="form-group">
-                                                    <label for="latitude{{ $j }}" class="col-form-label">Point
-                                                        {{ $j + 1 }} Coordinates</label>
-                                                    <div class="col-12">
+                                            <div class="row">
+                                                @for($j = 0; $j < 8; $j++)
+                                                    <div class="form-floating col-md-6 mb-2">
                                                         <input type="text" class="form-control" id="latitude{{ $j }}"
-                                                            name="coordinates{{ $j }}" value="{{ $polygon['point' . $j] }}">
+                                                            name="coordinates{{ $j }}" value="{{ $polygon['point' . $j]}}" placeholder="{{ $polygon['point' . $j]==null?'Paste Coordinates Here':''}}">
+                                                        <label for="latitude{{ $j }}" class="text-center">Point
+                                                            {{ $j + 1 }} Coordinates</label>
                                                     </div>
-                                                </div>
-
-                                            @endfor
+                                                @endfor
+                                            </div>
                                         </div>
 
                                         <div class="modal-footer">
