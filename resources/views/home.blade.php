@@ -125,8 +125,9 @@
                     </td>
                     <td>
                         <!-- View Polygon -->
-                        <a href="{{ route('polygon.show', $polygon->id) }}" class="btn btn-info">View</a>
+                        <a href="{{ route('polygon.show', $polygon->id) }}" class="btn btn-info">Edit Points</a>
                     </td>
+
                 </tr>
             @endforeach
     </table>
