@@ -117,29 +117,29 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <p>Name: {{ $polygon->name }}</p>
+                                        <p>Name: {{ $polygon->name }}</p>
                                         <p>Code: {{ $polygon->code }}</p>
                                         <p>Speed Limit: {{ $polygon->speed_limit }}</p>
-                                        
+
                                         <table class="table">
-                                             <thead>
-                                                 <tr>
-                                                     <th>Point</th>
-                                                     <th>Latitude</th>
-                                                     <th>Longitude</th>
-                                                 </tr>
-                                             </thead>
-                                             <tbody>
-                                             @for($k = 0; $k < 8; $k++)
-                                             <tr>
-                                                <td>Point {{ $k+1 }}</td>
-                                                <td>{{explode(',',$polygon['point' . $k])[0]}}</td>
-                                                 <td>{{ explode(',',$polygon['point' . $k])[1]}}</td>
-                                             </tr>
-                                                
-                                            @endfor
-                                             </tbody>
-                                         </table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Point</th>
+                                                    <th>Latitude</th>
+                                                    <th>Longitude</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for($k = 0; $k < 8; $k++)
+                                                    @if($polygon['point' . $k] != null)
+                                                        <tr>
+                                                            <td>Point {{ $k + 1 }}</td>
+                                                            <td>{{explode(',', $polygon['point' . $k])[0]}}</td>
+                                                            <td>{{ explode(',', $polygon['point' . $k])[1]}}</td>
+                                                        </tr>
+                                                    @endif
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div class="modal-footer">
@@ -183,7 +183,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="code">Code</label>
-                                                <input type="text" class="form-control" id="code" name="code" value="{{ $polygon->code }}">
+                                                <input type="text" class="form-control" id="code" name="code"
+                                                    value="{{ $polygon->code }}">
                                                 <small id="codeHelp" class="form-text text-muted">Enter the code
                                                     for the polygon.</small>
                                                 <div id="codeError" class="form-text text-danger"></div>
