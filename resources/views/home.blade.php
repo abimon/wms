@@ -125,8 +125,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Point</th>
-                                                    <th>Latitude</th>
                                                     <th>Longitude</th>
+                                                    <th>Latitude</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
