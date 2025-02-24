@@ -17,7 +17,6 @@ Route::middleware('auth')->group(function () {
     });
     Route::resources([
         'polygon' =>PolygonController::class,
-        'polypoint'=> PointController::class,
     ]);
 });
 Route::get('/home', function (){

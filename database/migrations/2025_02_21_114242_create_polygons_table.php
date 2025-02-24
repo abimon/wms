@@ -16,6 +16,14 @@ return new class extends Migration
             $table->string("name");
             $table->string("code");
             $table->string("speed_limit");
+            $table->string("point0");
+            $table->string("point1");
+            $table->string("point2");
+            $table->string("point3");
+            $table->string("point4")->nullable();
+            $table->string("point5")->nullable();
+            $table->string("point6")->nullable();
+            $table->string("point7")->nullable();
             $table->boolean("isEnabled")->default(true);
             $table->timestamps();
         });

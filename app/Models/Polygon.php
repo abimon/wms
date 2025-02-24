@@ -12,9 +12,14 @@ class Polygon extends Model
         'name',
         'code',
         'speed_limit',
+        'point0',
+        'point1',
+        'point2',
+        'point3',
+        'point4',
+        'point5',
+        'point6',
+        'point7',
         'isEnabled'
     ];
-    public function points(){
-        return $this->hasMany(Point::class,'polygon_id','id');
-    }
 }

@@ -29,19 +29,40 @@ class PolygonController extends Controller
      */
     public function store()
     {
+        // dd(request('coordinates0'));
         $this->validate(request(), [
             'name' => 'required',
             'code' => 'required',
+            'speed_limit'=> 'required',
+            'coordinates0'=> 'required',
+            'coordinates1'=> 'required',
+            'coordinates2'=> 'required',
+            'coordinates3'=> 'required',
+        ],[
+            'coordinates0.required' => 'The first point is required',
+            'coordinates1.required' => 'The second point is required',
+            'coordinates2.required' => 'The third point is required',
+            'coordinates3.required' => 'The fourth point is required',
         ]);
-        $polygon = Polygon::where('name', '=', request('name'))->first();
+        $polygon = Polygon::where([['name', '=', request('name')],['code','=', request('code')]])->first();
         if (!$polygon) {
             $polygon=Polygon::create([
                 "name"=>request("name"),
                 "code"=>request("code"),
                 "speed_limit"=>request("speed_limit"),
+                'point0'=>request('coordinates0'),
+                'point1'=>request('coordinates1'),
+                'point2'=>request('coordinates2'),
+                'point3'=>request('coordinates3'),
+                'point4'=>request('coordinates4'),
+                'point5'=>request('coordinates5'),
+                'point6'=>request('coordinates6'),
+                'point7'=>request('coordinates7'),
             ]);
+            return back()->with('success', 'Successfully created polygon');
         }
-        return view('polypoints.index',compact('polygon'))->with('success', 'Successfully created polygon');
+        return back()->with('error', 'Polygon already exists');
+        
     }
 
     /**
