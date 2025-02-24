@@ -103,7 +103,7 @@ class PolygonController extends Controller
      */
     public function destroy($id)
     {
-        // Polygon::destroy($id);
-        return response()->json(["message"=>"Polygon deleted successfully"]);
+        Polygon::destroy($id);
+        return back()->with("error","Polygon deleted successfully");
     }
 }
