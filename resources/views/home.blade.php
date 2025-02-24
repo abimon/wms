@@ -117,12 +117,30 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Name: {{ $polygon->name }}</p>
+                                    <p>Name: {{ $polygon->name }}</p>
                                         <p>Code: {{ $polygon->code }}</p>
                                         <p>Speed Limit: {{ $polygon->speed_limit }}</p>
-                                        @for($k = 0; $k < 8; $k++)
-                                            <p>Point {{ $k + 1 }}: {{ $polygon['point' . $k] }}</p>
-                                        @endfor
+                                        
+                                        <table class="table">
+                                             <thead>
+                                                 <tr>
+                                                     <th>Point</th>
+                                                     <th>Latitude</th>
+                                                     <th>Longitude</th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                             @for($k = 0; $k < 8; $k++)
+                                             <tr>
+                                                <td>Point {{ $k+1 }}</td>
+                                                <td>{{explode(',',$polygon['point' . $k])[0]}}</td>
+                                                 <td>{{ explode(',',$polygon['point' . $k])[1]}}</td>
+                                             </tr>
+                                                
+                                            @endfor
+                                             </tbody>
+                                         </table>
+                                        </table>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="close" class="btn btn-secondary"
