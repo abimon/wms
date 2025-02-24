@@ -152,11 +152,12 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <form id="editPolygonForm{{ $polygon->id }}"
-                                            action="{{ route('polygon.update', $polygon->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
+                                    <form id="editPolygonForm{{ $polygon->id }}"
+                                        action="{{ route('polygon.update', $polygon->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-body">
+
                                             <div class="form-group">
                                                 <label for="name">Name</label>
                                                 <input type="text" class="form-control" id="name" name="name"
@@ -185,18 +186,16 @@
                                                 </div>
 
                                             @endfor
-                                    </div>
-                                </div>
+                                        </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" id="close" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                        <div class="modal-footer">
+                                            <button type="button" id="close" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                </form>
                             </div>
-                        </div>
-                        </div>
                         </div>
                     </td>
                     <td>
