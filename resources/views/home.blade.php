@@ -169,15 +169,33 @@
                                                     for the polygon.</small>
                                                 <div id="codeError" class="form-text text-danger"></div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" id="close" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            <div class="form-group">
+                                                <label for="speed_limit">Speed Limit(Km/Hr)</label>
+                                                <input type="number" class="form-control" id="speed_limit" name="speed_limit"
+                                                    value="{{ $polygon->speed_limit }}">
                                             </div>
-                                        </form>
                                     </div>
+                                    <div class="form-group">
+                                        @for($i = 0; $i < 8; $i++)
+                                            <div class="form-group">
+                                                <label for="latitude{{$i}}" class="col-form-label">Point {{$i + 1}}
+                                                    Coordinates</label>
+                                                <div class="col-12">
+                                                    <input type="text" class="form-control" id="latitude{{$i}}" value="{{ $polygon['point' . $i] }}"
+                                                        name="coordinates{{ $i}}">
+                                                </div>
+                                            </div>
+                                        @endfor
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </td>
                     <td>
