@@ -165,7 +165,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="code">Code</label>
-                                                <input type="text" class="form-control" id="code" name="code">
+                                                <input type="text" class="form-control" id="code" name="code" value="{{ $polygon->code }}">
                                                 <small id="codeHelp" class="form-text text-muted">Enter the code
                                                     for the polygon.</small>
                                                 <div id="codeError" class="form-text text-danger"></div>
