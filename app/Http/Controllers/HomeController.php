@@ -10,7 +10,7 @@ class HomeController extends Controller
     
     public function index()
     {
-        
-        return view('home');
+        $polygons = Polygon::all();
+        return view('home', compact('polygons'));
     }
 }

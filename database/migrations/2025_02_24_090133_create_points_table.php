@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('polygons', function (Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("code");
-            $table->string("speed_limit");
-            $table->boolean("isEnabled")->default(true);
+            $table->unsignedBigInteger('polygon_id');
+            $table->string('longitude');
+            $table->string('latitude');
+            $table->string('accuracy');
             $table->timestamps();
+            $table->foreign('polygon_id')->references('id')->on('polygons')->cascadeOnDelete();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('polygons');
+        Schema::dropIfExists('points');
     }
 };

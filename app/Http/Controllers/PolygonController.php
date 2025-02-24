@@ -12,8 +12,8 @@ class PolygonController extends Controller
      */
     public function index()
     {
-        $polygon = Polygon::all();
-        return response()->json($polygon);
+        $polygons = Polygon::all();
+        return view('home', compact('polygons'));
     }
 
     /**
@@ -27,23 +27,30 @@ class PolygonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        Polygon::create([
-            "name"=>request("name"),
-            "code"=>request("code"),
-            "point0"=>request("point0Latitude").",".request("point0Longitude"),
+        $this->validate(request(), [
+            'name' => 'required',
+            'code' => 'required',
         ]);
-        $polygons=Polygon::all();
-        return response()->json($polygons);
+        $polygon = Polygon::where('name', '=', request('name'))->first();
+        if (!$polygon) {
+            $polygon=Polygon::create([
+                "name"=>request("name"),
+                "code"=>request("code"),
+                "speed_limit"=>request("speed_limit"),
+            ]);
+        }
+        return view('polypoints.index',compact('polygon'))->with('success', 'Successfully created polygon');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Polygon $polygon)
+    public function show($id)
     {
-        //
+        $polygon = Polygon::findOrFail($id);
+        return view('polypoints.index', compact('polygon'));
     }
 
     /**
@@ -65,30 +72,6 @@ class PolygonController extends Controller
         }
         if(request('code')!=null){
             $polygon->code=request('code');
-        }
-        if(request('point0')!=null){
-            $polygon->point0=request('point0Latitude').','.request('point0Longitude');
-        }
-        if(request('point1')!=null){
-            $polygon->point1=request('point1Latitude').','.request('point1Longitude');
-        }
-        if(request('point2')!=null){
-            $polygon->point2=request('point2Latitude').','.request('point2Longitude');
-        }
-        if(request('point3')!=null){
-            $polygon->point3=request('point3Latitude').','.request('point3Longitude');
-        }
-        if(request('point4')!=null){
-            $polygon->point4=request('point4Latitude').','.request('point4Longitude');
-        }
-        if(request('point5')!=null){
-            $polygon->point5=request('point5Latitude').','.request('point5Longitude');
-        }
-        if(request('point6')!=null){
-            $polygon->point6=request('point6Latitude').','.request('point6Longitude');
-        }
-        if(request('point7')!=null){
-            $polygon->point7=request('point7Latitude').','.request('point7Longitude');
         }
         $polygon->update();
         return back()->with("success","Polygon updated successfully");

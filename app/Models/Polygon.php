@@ -11,15 +11,10 @@ class Polygon extends Model
     protected $fillable = [
         'name',
         'code',
-        'point0',
-        'point1',
-        'point2',
-        'point3',
-        'point4',
-        'point5',
-        'point6',
-        'point7',
+        'speed_limit',
         'isEnabled'
-
     ];
+    public function points(){
+        return $this->hasMany(Point::class,'polygon_id','id');
+    }
 }
