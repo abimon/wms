@@ -60,14 +60,16 @@
                                 <label for="speed_limit">Speed Limit(Km/Hr)</label>
                                 <input type="number" class="form-control" id="speed_limit" name="speed_limit">
                             </div>
-                            @for($i = 0; $i < 8; $i++)
-                                <div class="form-group">
-                                    <label for="latitude{{$i}}" class="col-form-label">Point {{$i + 1}} Coordinates</label>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="latitude{{$i}}" name="coordinates{{ $i}}">
+                            <div class="row">
+                                @for($i = 0; $i < 8; $i++)
+                                    <div class="form-floating col-md-6 mb-2">
+                                        <input type="text" class="form-control" name="coordinates{{ $i }}"
+                                            placeholder="Paste Coordinates Here">
+                                        <label for="latitude{{ $i }}" class="text-center">Point
+                                            {{ $i + 1 }} Coordinates</label>
                                     </div>
-                                </div>
-                            @endfor
+                                @endfor
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" id="close" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
@@ -198,7 +200,8 @@
                                                 @for($j = 0; $j < 8; $j++)
                                                     <div class="form-floating col-md-6 mb-2">
                                                         <input type="text" class="form-control" id="latitude{{ $j }}"
-                                                            name="coordinates{{ $j }}" value="{{ $polygon['point' . $j]}}" placeholder="{{ $polygon['point' . $j]==null?'Paste Coordinates Here':''}}">
+                                                            name="coordinates{{ $j }}" value="{{ $polygon['point' . $j]}}"
+                                                            placeholder="{{ $polygon['point' . $j] == null ? 'Paste Coordinates Here' : ''}}">
                                                         <label for="latitude{{ $j }}" class="text-center">Point
                                                             {{ $j + 1 }} Coordinates</label>
                                                     </div>
