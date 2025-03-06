@@ -87,8 +87,7 @@
                 <th>Name</th>
                 <th>Code</th>
                 <th>Speed Limit</th>
-                <th>Coordinates</th>
-                <th colspan="2">Actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -98,11 +97,22 @@
                     <td>{{ $polygon->code }}</td>
                     <td>{{ $polygon->speed_limit }}</td>
                     <td>
-                        <!-- button -->
-                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#viewPolygonModal{{ $polygon->id }}">
-                            View
-                        </button>
+                        <!-- dropdown -->
+                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Actions
+                       </button>
+                         <div class="dropdown-menu">
+                             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPolygonModal{{ $polygon->id }}">Edit</a>
+                             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewPolygonModal{{ $polygon->id }}">View</a>
+                             <form id="deletePolygonForm{{ $polygon->id }}" action="{{ route('polygon.destroy', $polygon->id) }}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="dropdown-item" onclick="confirm('Do you realy want to delete this polygon?')">Delete</button>
+                        </form>
+                             <div class="dropdown-divider"></div>
+                         </div>
                         <!-- Modal view -->
                         <!-- Modal -->
                         <div class="modal fade" id="viewPolygonModal{{ $polygon->id }}" tabindex="-1"
@@ -151,12 +161,6 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#editPolygonModal{{ $polygon->id }}">
-                            Edit
-                        </button>
                         <!-- Modal edit polygon -->
                         <!-- Modal -->
                         <div class="modal fade" id="editPolygonModal{{ $polygon->id }}" tabindex="-1"
@@ -218,15 +222,8 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                    <td>
                         <!-- Delete polygon -->
-                        <form id="deletePolygonForm{{ $polygon->id }}" action="{{ route('polygon.destroy', $polygon->id) }}"
-                            method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        
                     </td>
                 </tr>
             @endforeach

@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="/storage/front/css/style.css" />
     <!-- endinject -->
     <link rel="shortcut icon" href="/storage/front/images/favicon.ico" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -67,18 +69,18 @@
                         <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:;">
                             <h6 class="date mb-0">{{ date('D') }} : <span id="time_span"></span></h6>
                             <script>
-                                function updateTime(){
+                                function updateTime() {
                                     var currentTime = new Date()
                                     var hours = currentTime.getHours()
                                     var minutes = currentTime.getMinutes()
                                     var seconds = currentTime.getSeconds()
-                                    if (seconds < 10){
+                                    if (seconds < 10) {
                                         seconds = "0" + seconds
-                                    }if (minutes < 10){
+                                    } if (minutes < 10) {
                                         minutes = "0" + minutes
                                     }
-                                    var t_str = hours + ":" + minutes + ":"+ seconds+" ";
-                                    if(hours > 11){
+                                    var t_str = hours + ":" + minutes + ":" + seconds + " ";
+                                    if (hours > 11) {
                                         t_str += "PM";
                                     } else {
                                         t_str += "AM";
@@ -208,49 +210,6 @@
             </div>
         </nav>
         <!-- partial -->
-        <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
-            <div class="navbar-links-wrapper d-flex align-items-stretch">
-                <div class="nav-link">
-                    <a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
-                </div>
-                <div class="nav-link">
-                    <a href="javascript:;"><i class="typcn typcn-mail"></i></a>
-                </div>
-                <div class="nav-link">
-                    <a href="javascript:;"><i class="typcn typcn-folder"></i></a>
-                </div>
-                <div class="nav-link">
-                    <a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
-                </div>
-            </div>
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <ul class="navbar-nav me-lg-2">
-                    <li class="nav-item ms-0">
-                        <h4 class="mb-0">Dashboard</h4>
-                    </li>
-                    <li class="nav-item">
-                        <div class="d-flex align-items-baseline">
-                            <p class="mb-0">Home</p>
-                            <i class="typcn typcn-chevron-right"></i>
-                            <p class="mb-0">Main Dahboard</p>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item nav-search d-none d-md-block me-0">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." aria-label="search"
-                                aria-describedby="search" />
-                            <div class="input-group-prepend d-flex">
-                                <span class="input-group-text" id="search">
-                                    <i class="typcn typcn-zoom"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -276,7 +235,7 @@
                             <span class="menu-title">Tickets</span>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false"
                             aria-controls="icons">
@@ -297,16 +256,16 @@
             <div class="main-panel">
                 <div class="content-wrapper">
                     @if(Session::has('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Error!</strong> {{ Session::get('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> {{ Session::get('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
                     @if(Session::has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Success!</strong> {{ Session::get('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> {{ Session::get('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
                     @yield('content')
                 </div>

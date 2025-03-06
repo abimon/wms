@@ -106,4 +106,9 @@ class PolygonController extends Controller
         Polygon::destroy($id);
         return back()->with("error","Polygon deleted successfully");
     }
+
+    public function getPolygons(){
+        $polygons = Polygon::all();
+        return response()->json($polygons);
+    }
 }

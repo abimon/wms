@@ -23834,7 +23834,7 @@ dl li {
   flex-direction: row;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 1.875rem;
+  padding-top: 0.2rem;
   background: #f4f5fa;
 }
 .page-body-wrapper.full-page-wrapper {
@@ -23844,7 +23844,7 @@ dl li {
 }
 
 .navbar + .page-body-wrapper {
-  padding-top: calc(4.625rem + 1.875rem);
+  padding-top: calc(1.875rem);
 }
 
 .main-panel {
