@@ -115,14 +115,14 @@ class PolygonController extends Controller
             for($i=0; $i<8; $i++){
                 if($polygon->{'point'.$i}!=null){
                     $point=explode(',',$polygon->{'point'.$i});
-                    array_push($coordinates, [$point[0],$point[1]]);
+                    array_push($coordinates, [doubleval($point[0]),doubleval($point[1])]);
                 }
             }
             array_push($polygons, [
                 "id"=>$polygon->id,  // Polygon ID
                 "name"=>$polygon->name,
                 "code"=>$polygon->code,
-                "speed_limit"=>$polygon->speed_limit,  //Speed limit in km/h
+                "speed_limit"=>intval($polygon->speed_limit),  //Speed limit in km/h
                 "coordinates"=>$coordinates
             ]);
         }
