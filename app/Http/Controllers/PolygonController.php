@@ -119,6 +119,7 @@ class PolygonController extends Controller
                 }
             }
             array_push($polygons, [
+                "id"=>$polygon->id,  // Polygon ID
                 "name"=>$polygon->name,
                 "code"=>$polygon->code,
                 "speed_limit"=>$polygon->speed_limit,  //Speed limit in km/h
