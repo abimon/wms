@@ -115,7 +115,6 @@ class PolygonController extends Controller
             for($i=0; $i<8; $i++){
                 if($poly->{"point".$i}!=null){
                     $point = explode(",",$poly->{"point".$i});
-                    $point[] = [$point[0], $point[1]];
                     array_push($polygons, $point);
                 }
             }
