@@ -108,7 +108,24 @@ class PolygonController extends Controller
     }
 
     public function getPolygons(){
-        $polygons  = Polygon::all();
-        return response()->json($polygons);
+        $polys  = Polygon::all();
+        $zones=[];
+        foreach($polys as $poly){
+            $polygons = [];
+            for($i=0; $i<8; $i++){
+                if($poly->{"point".$i}!=null){
+                    $point = explode(",",$poly->{"point".$i});
+                    $point[] = [$point[0], $point[1]];
+                    array_push($polygons, $point);
+                }
+            }
+            array_push($zones, [
+                'name'=>$poly->name,
+                'coordinates'=>$polygons,
+                'speed_limit'=>$poly->speed_limit,
+                'code'=>$poly->code
+            ]);
+        }
+        return response()->json($zones);
     }
 }
