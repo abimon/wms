@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PolygonController;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\TripReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +32,10 @@ Route::controller(UserController::class)->prefix('/user/')->group(function(){
 });
 Route::controller(PolygonController::class)->prefix('/polygons')->group(function(){
     Route::get('/','getPolygons'); 
+});
+Route::controller(TripController::class)->prefix('/trip')->group(function(){
+    Route::get('/store','store');
+});
+Route::controller(TripReportController::class)->prefix('/tripreport')->group(function(){
+    Route::get('/store','store');
 });
