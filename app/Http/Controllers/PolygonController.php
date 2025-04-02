@@ -87,6 +87,7 @@ class PolygonController extends Controller
      */
     public function update($id)
     {
+        dd(request());
         $polygon = Polygon::find($id);
         if(request('name')!=null){
             $polygon->name=request('name');
