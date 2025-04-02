@@ -94,6 +94,11 @@ class PolygonController extends Controller
         if(request('code')!=null){
             $polygon->code=request('code');
         }
+        for($i=0; $i<8; $i++){
+            if(request('coordinates'.$i)!=null){
+                $polygon->{"point".$i}=request('coordinates'.$i);
+            }
+        }
         $polygon->update();
         return back()->with("success","Polygon updated successfully");
     }
