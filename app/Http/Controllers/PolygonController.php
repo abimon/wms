@@ -95,6 +95,9 @@ class PolygonController extends Controller
         if(request('code')!=null){
             $polygon->code=request('code');
         }
+        if(request('speed_limit')!=null){
+            $polygon->speed_limit=request('speed_limit');
+        }
         for($i=0; $i<8; $i++){
             if(request('coordinates'.$i)!=null){
                 $polygon->{"point".$i}=request('coordinates'.$i);
