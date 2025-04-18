@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PolygonController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripReportController;
 use App\Http\Controllers\UserController;
@@ -37,5 +38,8 @@ Route::controller(TripController::class)->prefix('/trip')->group(function(){
     Route::get('/store','store');
 });
 Route::controller(TripReportController::class)->prefix('/tripreport')->group(function(){
+    Route::get('/store','store');
+});
+Route::controller(ReportController::class)->prefix('/report')->group(function(){
     Route::get('/store','store');
 });
