@@ -27,9 +27,7 @@
                             <td>{{ $report->description }}</td>
                             <td>{{ date_format($report->created_at, 'F jS, Y H:i:s') }}</td>
                             <td>
-                                <!-- <a href="{{ route('report.show', $report->id) }}" class="btn btn-primary">View</a>
-                                        <a href="{{ route('report.edit', $report->id) }}" class="btn btn-warning">Edit</a> -->
-                                <form action="{{ route('report.destroy', $report->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('reports.destroy', $report->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">Delete</button>
