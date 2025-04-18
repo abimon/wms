@@ -3,13 +3,14 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\PolygonController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    ROute::controller(HomeController::class)->group(function () {
+    Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'index')->name('home');
     });
     Route::controller(PolygonController::class)->prefix('/polygons')->group(function () {
@@ -17,6 +18,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::resources([
         'polygon' =>PolygonController::class,
+        'reports'=>ReportController::class,
     ]);
 });
 Route::get('/home', function (){
