@@ -41,5 +41,5 @@ Route::controller(TripReportController::class)->prefix('/tripreport')->group(fun
     Route::get('/store','store');
 });
 Route::controller(ReportController::class)->prefix('/report')->group(function(){
-    Route::get('/store','store');
+    Route::post('/store','store');
 });
