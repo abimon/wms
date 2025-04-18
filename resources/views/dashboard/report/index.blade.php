@@ -14,7 +14,7 @@
             <tbody>
                 @foreach($reports as $report)
                 <tr>
-                    <td>{{ $loop()->iteration }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $report->contact }}</td>
                     <td>{{ $report->vehicle }}</td>
                     <td>{{ $report->latitude }}</td>
