@@ -20,6 +20,7 @@
                     <td>{{ $report->latitude }}</td>
                     <td>{{ $report->longitude }}</td>
                     <td>{{ $report->description }}</td>
+                    <td>{{ date_format($report->created_at, 'F jS, Y H:i:s') }}</td>
                 </tr>
                 @endforeach
             </tbody>
