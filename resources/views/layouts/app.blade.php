@@ -222,8 +222,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="{{ route('reports.index') }}" aria-expanded="false"
-                            aria-controls="ui-basic">
+                        <a class="nav-link" href="{{ route('reports.index') }}">
                             <i class="typcn typcn-document-text menu-icon"></i>
                             <span class="menu-title">Reports</span>
                         </a>
