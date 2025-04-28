@@ -73,8 +73,9 @@ class TripController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Trip $trip)
+    public function destroy($id)
     {
-        //
+        Trip::destroy($id);
+        return redirect()->back()->with('success', 'Trip deleted successfully');
     }
 }

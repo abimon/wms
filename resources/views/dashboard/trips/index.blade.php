@@ -9,16 +9,23 @@
                     <th>Location</th>
                     <th>Direction</th>
                     <th>Passenger</th>
+                    <th>Action</th>
                 </thead>
                 <tbody>
                     @foreach($trips as $trip)
                         <tr>
                             <td>{{ $trip->id }}</td>
                             <td>{{ $trip->vehicle_plate }}</td>
-                            <td>{{ $trip->location }}</td>
+                            <td><a href="https://maps.google.com/maps?q={{$trip->location}}">{{ $trip->location }}</a></td>
                             <td>{{ $trip->direction }}</td>
                             <td>{{ $trip->passenger_contact }}</td>
-                        </tr>
+                            <td>
+                                <form action="{{ route('trips.destroy', $trip->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
