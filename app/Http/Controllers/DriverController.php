@@ -26,9 +26,16 @@ class DriverController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $driver = Driver::create([
+            'driver_id' => request('driver_id'),
+            'vehicle_plate' => request('vehicle_plate'),
+            'paid' => false,
+        ]);
+        return response()->json([
+            'message' => 'Driver created successfully',
+        ]);
     }
 
     /**

@@ -38,7 +38,7 @@ class TripController extends Controller
             "direction" => request("direction")
         ]);
         return response()->json([
-            'message' => 'Trip created successfully',
+            'message' => 'Success',
             'trip_id' => $trip->id,
             'driver'=>Driver::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first()->driver,
         ]);
