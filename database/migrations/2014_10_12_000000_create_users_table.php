@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('contact')->unique();
             $table->string('k_name')->nullable();
             $table->string('k_contact')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('password');
             $table->string('role')->default('Member');
             $table->rememberToken();

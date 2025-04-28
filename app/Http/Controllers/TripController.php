@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use App\Models\Trip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class TripController extends Controller
 {
@@ -37,7 +39,8 @@ class TripController extends Controller
         ]);
         return response()->json([
             'message' => 'Trip created successfully',
-            'trip' => $trip
+            'trip_id' => $trip->id,
+            'driver'=>Driver::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first()->driver,
         ]);
     }
 

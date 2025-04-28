@@ -228,10 +228,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false"
-                            aria-controls="form-elements">
+                        <a class="nav-link" href="{{ route('trips.index') }}">
                             <i class="typcn typcn-film menu-icon"></i>
-                            <span class="menu-title">Tickets</span>
+                            <span class="menu-title">Trips</span>
                         </a>
                     </li>
 

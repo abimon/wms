@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Trip extends Model
+class Driver extends Model
 {
     use HasFactory;
     protected $fillable = [
         'vehicle_plate',
-        'passenger_contact',
-        'location',
-        'direction',
+        'driver_id',
+        'paid',
     ];
-    public function tripReport(){
-        return $this->hasMany(TripReport::class,'trip_id','id');
+    public function driver(){
+        return $this->belongsTo(User::class,'driver_id','id');
     }
 }

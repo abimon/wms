@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('trip_reports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('trip_id');
+            $table->double('speed_limit');
+            $table->string('start_time');
+            $table->string('start_location');
+            $table->string('direction');
+            $table->string('accuracy');
+            $table->string('end_time')->nullable();
+            $table->string('end_location')->nullable();
             $table->timestamps();
+            $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
         });
     }
 
