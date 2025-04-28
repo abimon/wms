@@ -38,10 +38,11 @@ class TripController extends Controller
             "location" => request("location"),
             "direction" => request("direction")
         ]);
+        $driver =Driver::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first();
         return response()->json([
             'message' => 'Success',
             'trip_id' => $trip->id,
-            'driver'=>Driver::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first()->driver,
+            'driver'=>$driver?($driver->driver):null,
         ]);
     }
 
