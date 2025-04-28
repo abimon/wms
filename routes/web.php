@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\PolygonController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'polygon' =>PolygonController::class,
         'reports'=>ReportController::class,
+        'trips'=>TripController::class,
     ]);
 });
 Route::get('/home', function (){
