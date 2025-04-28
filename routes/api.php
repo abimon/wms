@@ -35,10 +35,10 @@ Route::controller(PolygonController::class)->prefix('/polygons')->group(function
     Route::get('/','getPolygons'); 
 });
 Route::controller(TripController::class)->prefix('/trip')->group(function(){
-    Route::get('/store','store');
+    Route::post('/store','store');
 });
 Route::controller(TripReportController::class)->prefix('/tripreport')->group(function(){
-    Route::get('/store','store');
+    Route::post('/store','store');
 });
 Route::controller(ReportController::class)->prefix('/report')->group(function(){
     Route::post('/store','store');
