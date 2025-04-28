@@ -31,7 +31,7 @@ class TripController extends Controller
      */
     public function store()
     {
-        dd(request());
+        // dd(request());
         $trip=Trip::create([
             "vehicle_plate" => request("vehicle_plate"),
             "passenger_contact" => request("passenger_contact"),
