@@ -46,7 +46,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <table class="table table-bordered table-striped">
+                                                <table class="table table-bordered table-striped table-responsive">
                                                     <thead>
                                                         <th>#</th>
                                                         <th>Start Time</th>
