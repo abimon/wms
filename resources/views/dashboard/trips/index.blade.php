@@ -27,17 +27,19 @@
                                 </form>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-info" data-bs-targe="#tripModal{{ $trip->id }}"
-                                    data-bs-toggle="modal">Overspeed instances({{ $trip->tripReport->count() }})</a>
-                                <div class="modal fade" id="tripModal{{ $trip->id }}" tabindex="-1"
-                                    aria-labelledby="tripModalLabel{{ $trip->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tripModal{{ $trip->id}} }}">
+                                Overspeed instances({{ $trip->tripReport->count() }})
+                                </button>
+                                <!-- Modal add polygon -->
+                                <!-- Modal -->
+                                <div class="modal fade" id="tripModal{{ $trip->id}}" tabindex="-1" aria-labelledby="tripModal{{ $trip->id}}Label" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="tripModalLabel{{ $trip->id }}">Overspeed instances
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                                <h5 class="modal-title" id="tripModal{{ $trip->id}}Label">Overspeed instances</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"></span>
+                                                </button>
                                             </div>
                                             <div class="modal-body">
                                                 <table class="table table-bordered table-striped">
@@ -71,8 +73,7 @@
                                                 </table>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
