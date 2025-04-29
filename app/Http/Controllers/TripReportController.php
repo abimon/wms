@@ -41,7 +41,7 @@ class TripReportController extends Controller
         ]);
         return response()->json([
             'message' => 'Trip report created successfully',
-            'trip_report' => $tripReport
+            'id' => $tripReport->id
         ]); 
     }
 
