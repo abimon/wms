@@ -42,7 +42,7 @@ class TripReportController extends Controller
         return response()->json([
             'message' => 'Trip report created successfully',
             'id' => $tripReport->id
-        ]); 
+        ]);
     }
 
     /**
@@ -64,9 +64,16 @@ class TripReportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TripReport $tripReport)
+    public function update($id)
     {
-        //
+        TripReport::where('id', $id)->update([
+            'end_time' => request('end_time'),
+            'end_location' => request('end_location')
+        ]);
+        return response()->json([
+            'message' => 'Trip report updated successfully',
+            'id' => $id
+        ]);
     }
 
     /**
