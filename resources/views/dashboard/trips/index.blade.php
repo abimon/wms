@@ -46,35 +46,38 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <table class="table table-bordered table-striped table-responsive">
-                                                    <thead>
-                                                        <th>#</th>
-                                                        <th>Start Time</th>
-                                                        <th>Start Location</th>
-                                                        <th>Direction</th>
-                                                        <th>Accuracy</th>
-                                                        <th>End Time</th>
-                                                        <th>End Location</th>
-                                                        <th>Speed Limit</th>
-                                                        <th>Speed</th>
+                                                <div class="table table-responsive">
+                                                    <table class="table-bordered table-striped ">
+                                                        <thead>
+                                                            <th>#</th>
+                                                            <th>Start Time</th>
+                                                            <th>Start Location</th>
+                                                            <th>Direction</th>
+                                                            <th>Accuracy</th>
+                                                            <th>End Time</th>
+                                                            <th>End Location</th>
+                                                            <th>Speed Limit</th>
+                                                            <th>Speed</th>
 
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($trip->tripReport as $report)
-                                                            <tr>
-                                                                <td>{{ $loop->iteration }}</td>
-                                                                <td>{{$report->start_time}}</td>
-                                                                <td>{{$report->start_location}}</td>
-                                                                <td>{{$report->direction}}</td>
-                                                                <td>{{$report->accuracy}}</td>
-                                                                <td>{{$report->end_time}}</td>
-                                                                <td>{{$report->end_location}}</td>
-                                                                <td>{{$report->speed_limit}}</td>
-                                                                <td>{{$report->speed}}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach($trip->tripReport as $report)
+                                                                <tr>
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{$report->start_time}}</td>
+                                                                    <td>{{$report->start_location}}</td>
+                                                                    <td>{{$report->direction}}</td>
+                                                                    <td>{{$report->accuracy}}</td>
+                                                                    <td>{{$report->end_time}}</td>
+                                                                    <td>{{$report->end_location}}</td>
+                                                                    <td>{{$report->speed_limit}}</td>
+                                                                    <td>{{$report->speed}}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
