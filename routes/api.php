@@ -39,6 +39,7 @@ Route::controller(TripController::class)->prefix('/trip')->group(function(){
 });
 Route::controller(TripReportController::class)->prefix('/tripreport')->group(function(){
     Route::post('/store','store');
+    Route::put('/update/{id}','update');
 });
 Route::controller(ReportController::class)->prefix('/report')->group(function(){
     Route::post('/store','store');
