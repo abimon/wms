@@ -27,17 +27,21 @@
                                 </form>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tripModal{{ $trip->id}} }}">
-                                Overspeed instances({{ $trip->tripReport->count() }})
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#tripModal{{ $trip->id}}">
+                                    Overspeed instances({{ $trip->tripReport->count() }})
                                 </button>
                                 <!-- Modal add polygon -->
                                 <!-- Modal -->
-                                <div class="modal fade" id="tripModal{{ $trip->id}}" tabindex="-1" aria-labelledby="tripModal{{ $trip->id}}Label" aria-hidden="true">
+                                <div class="modal fade" id="tripModal{{ $trip->id}}" tabindex="-1"
+                                    aria-labelledby="tripModal{{ $trip->id}}Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="tripModal{{ $trip->id}}Label">Overspeed instances</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                <h5 class="modal-title" id="tripModal{{ $trip->id}}Label">Overspeed instances
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
                                                     <span aria-hidden="true"></span>
                                                 </button>
                                             </div>
@@ -73,7 +77,8 @@
                                                 </table>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
