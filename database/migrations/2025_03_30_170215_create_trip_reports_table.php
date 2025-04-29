@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('trip_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('trip_id');
-            $table->double('speed_limit');
+            $table->double('speed_limit')->nullable();
+            $table->string('speed')->nullable();
             $table->string('start_time');
             $table->string('start_location');
             $table->string('direction');
