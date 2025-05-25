@@ -66,10 +66,17 @@ class TripReportController extends Controller
      */
     public function update($id)
     {
-        TripReport::where('id', $id)->update([
-            'end_time' => request('end_time'),
-            'end_location' => request('end_location')
-        ]);
+        $tripReport = TripReport::findOrFail($id);
+        if (request('speed') != null) {
+            $tripReport->speed = request('speed');
+        }
+        if (request('end_time') != null) {
+            $tripReport->end_time = request('end_time');
+        }
+        if (request('end_location') != null) {
+            $tripReport->end_location = request('end_location');
+        }
+        $tripReport->update();
         return response()->json([
             'message' => 'Trip report updated successfully',
             'id' => $id
