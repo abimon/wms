@@ -28,6 +28,7 @@ class TripReportController extends Controller
      */
     public function store(Request $request)
     {
+
         $tripReport = TripReport::create([
             "trip_id" => request("trip_id"),
             "speed_limit" => request("speed_limit"),

@@ -14,7 +14,7 @@
                 <tbody>
                     @foreach($trips as $trip)
                         <tr>
-                            <td>{{ $trip->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $trip->vehicle_plate }}</td>
                             <td><a href="https://maps.google.com/maps?q={{$trip->location}}">{{ $trip->location }}</a></td>
                             <td>{{ $trip->direction }}</td>
