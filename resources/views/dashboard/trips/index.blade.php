@@ -10,6 +10,7 @@
                     <th>Direction</th>
                     <th>Passenger</th>
                     <th>Action</th>
+                    <th>Trip Overspeed Reports</th>
                 </thead>
                 <tbody>
                     @foreach($trips as $trip)
