@@ -57,7 +57,7 @@
                                                             <th>End Time</th>
                                                             <th>End Location</th>
                                                             <th>Speed Limit</th>
-                                                            <th>Speed</th>
+                                                            <th>Highest Speed</th>
 
                                                         </thead>
                                                         <tbody>
@@ -70,8 +70,8 @@
                                                                     <td>{{$report->accuracy}}</td>
                                                                     <td>{{$report->end_time}}</td>
                                                                     <td>{{$report->end_location}}</td>
-                                                                    <td>{{$report->speed_limit}}</td>
-                                                                    <td>{{$report->speed}}</td>
+                                                                    <td>{{$report->speedLimit}}</td>
+                                                                    <td>{{$report->highestSpeed}}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
