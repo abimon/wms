@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('trip_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('trip_id');
-            $table->double('speed_limit')->nullable();
-            $table->string('speed')->nullable();
             $table->string('start_time');
             $table->string('start_location');
             $table->string('direction');
             $table->string('accuracy');
-            $table->string('end_time')->nullable();
-            $table->string('end_location')->nullable();
+            $table->string('speedLimit');
+            $table->string('end_time');
+            $table->string('highestSpeed');
+            $table->string('end_location');
             $table->timestamps();
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
         });

@@ -10,13 +10,13 @@ class TripReport extends Model
     use HasFactory;
     protected $fillable = [
         'trip_id',
-        'speed_limit',
         'start_time',
         'start_location',
         'direction',
         'accuracy',
-        'speed',
+        'speedLimit',
         'end_time',
+        'highestSpeed',
         'end_location'
     ];
     public function trip(){
