@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use App\Models\Trip;
+use App\Models\TripReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -14,6 +15,7 @@ class TripController extends Controller
      */
     public function index()
     {
+        TripReport::where('start_time','null')->delete();
         $trips = Trip::all();
         return view('dashboard.trips.index', compact('trips'));
     }

@@ -28,20 +28,22 @@ class TripReportController extends Controller
      */
     public function store(Request $request)
     {
-        $tripReport = TripReport::create([
-            "trip_id" => request('trip_id'),
-            "start_time" => request('start_time'),
-            "start_location" => request('start_location'),
-            "direction" => request('direction'),
-            "accuracy" => request('accuracy'),
-            "speedLimit" => request('speedLimit'),
-            "end_time" => request('end_time'),
-            "highestSpeed" => request('highestSpeed'),
-            "end_location" => request('end_location')
-        ]);
+        if (request('start_time') != 'null' && request('start_location') != 'null' && request('direction') != 'null') {
+            TripReport::create([
+                "trip_id" => request('trip_id'),
+                "start_time" => request('start_time'),
+                "start_location" => request('start_location'),
+                "direction" => request('direction'),
+                "accuracy" => request('accuracy'),
+                "speedLimit" => request('speedLimit'),
+                "end_time" => request('end_time'),
+                "highestSpeed" => request('highestSpeed'),
+                "end_location" => request('end_location')
+            ]);
+        }
         return response()->json([
             'message' => 'Trip report created successfully',
-            'id' => $tripReport->id
+            // 'id' => $tripReport->id
         ]);
     }
 
