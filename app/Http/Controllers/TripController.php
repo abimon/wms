@@ -16,7 +16,7 @@ class TripController extends Controller
     public function index()
     {
         TripReport::where('start_time','null')->delete();
-        $trips = Trip::all();
+        $trips = Trip::orderBy('id', 'desc')->get();
         return view('dashboard.trips.index', compact('trips'));
     }
 
