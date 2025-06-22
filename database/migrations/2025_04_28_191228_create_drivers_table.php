@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('driver_id');
             $table->boolean('paid')->default(false);
             $table->timestamps();
+            $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

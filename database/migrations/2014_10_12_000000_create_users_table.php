@@ -14,14 +14,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->string('contact')->unique();
-            $table->string('k_name')->nullable();
-            $table->string('k_contact')->nullable();
+            $table->string('id_number')->nullable();
+            $table->string('driving_license_number')->nullable();
+            $table->string('vehicle_category')->nullable();
+            $table->string('license_front')->nullable();
+            $table->string('license_back')->nullable();
             $table->string('avatar')->nullable();
             $table->string('password');
-            $table->string('role')->default('Member');
+            $table->string('role');
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
