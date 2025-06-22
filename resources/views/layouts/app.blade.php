@@ -235,8 +235,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="/polygons" aria-expanded="false"
-                            aria-controls="icons">
+                        <a class="nav-link"  href="/polygons" >
                             <i class="typcn typcn-compass menu-icon"></i>
                             <span class="menu-title">Polygons</span>
                         </a>
