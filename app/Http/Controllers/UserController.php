@@ -72,17 +72,8 @@ class UserController extends Controller
         if (request('vehicle_category') != null) {
             $user->vehicle_category = request('vehicle_category');
         }
-        if (request('license_front') != null) {
-            $user->license_front = request('license_front');
-        }
-        if (request('license_back') != null) {
-            $user->license_back = request('license_back');
-        }
-        if (request()->hasFile('avatar')) {
-            $file= request()->file('avatar');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('storage/avatars', $fileName);
-            $user->avatar = '/storage/avatars/' . $fileName;
+        if (request('image') != null) {
+            return response()->json(['message' => 'Image update not allowed'], 400);
         }
         if (request('password') != null) {
             $user->password = request('password');
