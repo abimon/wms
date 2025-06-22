@@ -15,11 +15,11 @@ class UserController extends Controller
     public function register()
     {
         $user = User::create([
-            'name' => request()->name,
-            'email' => request()->email,
-            'contact' => request()->contact,
-            'role' => request()->role,
-            'password' => Hash::make(request()->password),
+            'name' => request('name'),
+            'email' => request('email'),
+            'contact' => request('contact'),
+            'role' => request('role'),
+            'password' => Hash::make(request('password')),
             'id_number'=>request('id_number'),
             'driving_license_number'=>request('driving_license_number'),
             'vehicle_category'=>request('vehicle_category')
