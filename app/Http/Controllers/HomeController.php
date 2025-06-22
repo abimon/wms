@@ -19,7 +19,7 @@ class HomeController extends Controller
         return view('dashboard.polygons.index', compact('polygons'));
     }
     public function drivers(){
-        return view('dashboard.drivers.drivers');
+        return view('dashboard.users.drivers');
     }
 
 }
