@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Driver extends Model
+class Shift extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -14,7 +14,8 @@ class Driver extends Model
         'driver_id',
         'paid',
     ];
-    public function driver(){
-        return $this->belongsTo(User::class,'driver_id','id');
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'driver_id', 'id');
     }
 }

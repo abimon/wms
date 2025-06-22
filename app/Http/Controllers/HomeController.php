@@ -13,4 +13,13 @@ class HomeController extends Controller
         $polygons = Polygon::all();
         return view('home', compact('polygons'));
     }
+    public function polygons()
+    {
+        $polygons = Polygon::all();
+        return view('dashboard.polygons.index', compact('polygons'));
+    }
+    public function drivers(){
+        return view('dashboard.drivers.drivers');
+    }
+
 }
