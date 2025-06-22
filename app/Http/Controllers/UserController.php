@@ -40,7 +40,8 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return User::findOrFail($id);
+        $user= User::findOrFail($id);
+        return view('dashboard.users.show', compact('user'));
     }
 
     public function edit($id)
