@@ -13,9 +13,10 @@ class UserController extends Controller
     }
 
     public function register()
-    {
+    {$name = explode(' ', request('name'));
         $user = User::create([
-            'name' => request('name'),
+            'first_name' => $name[0],
+            'last_name' => end($name),
             'email' => request('email'),
             'contact' => request('contact'),
             'role' => request('role'),
