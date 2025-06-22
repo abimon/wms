@@ -30,6 +30,7 @@ class DriverController extends Controller
     {
         $driver = Driver::create([
             'driver_id' => request('driver_id'),
+            'shift_code'=>strtoupper(uniqid()),
             'vehicle_plate' => request('vehicle_plate'),
             'paid' => false,
         ]);

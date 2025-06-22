@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->string('vehicle_plate')->unique();
+            $table->string('vehicle_plate');
+            $table->string('shift_code')->unique();
             $table->unsignedBigInteger('driver_id');
             $table->boolean('paid')->default(false);
             $table->timestamps();

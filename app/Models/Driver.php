@@ -10,6 +10,7 @@ class Driver extends Model
     use HasFactory;
     protected $fillable = [
         'vehicle_plate',
+        'shift_code',
         'driver_id',
         'paid',
     ];
