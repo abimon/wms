@@ -41,7 +41,7 @@
             @foreach (App\Models\User::where('role', 'Driver')->get() as $driver)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $driver->name }}</td>
+                    <td>{{ $driver->first_name.' '.$driver->last_name }}</td>
                     <td>{{ $driver->contact }}</td>
                     <td>{{ $driver->driving_license_number }}</td>
                     <td>{{ $driver->id_number }}</td>
