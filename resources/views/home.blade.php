@@ -26,7 +26,7 @@
                     <i class="fa fa-book fa-3x text-dark"></i>
                     <div class="ms-3">
                         <p class="mb-2">Shifts Today</p>
-                        <h6 class="mb-0">{{App\Models\Shifts::where('created_at', '>=', Carbon\Carbon::today())->count()}}</h6>
+                        <h6 class="mb-0">{{App\Models\Shift::where('created_at', '>=', Carbon\Carbon::today())->count()}}</h6>
                     </div>
                 </div>
             </div>
