@@ -7,7 +7,7 @@
                     <th>#</th>
                     <th>Number Plate</th>
                     <th>Location</th>
-                    <th>Direction</th>
+                    <th>Start Time</th>
                     <th>Passenger</th>
                     <th>Action</th>
                     <th>Trip Overspeed Reports</th>
@@ -21,7 +21,7 @@
                                 <a href="https://maps.google.com/maps?q={{$trip->location}}">{{ $trip->location }}</a>
                                 <br>{{ $trip->direction }}
                             </td>
-                            <td>{{ $trip->created_at->format('d/m/Y H:i:s') }}</td>
+                            <td>{{ $trip->created_at->format('F jS H:i:s') }}</td>
                             <td>{{ $trip->passenger_contact }}</td>
                             <td>
                                 <form action="{{ route('trips.destroy', $trip->id) }}" method="POST" class="d-inline">
