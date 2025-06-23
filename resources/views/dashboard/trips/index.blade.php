@@ -17,8 +17,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $trip->vehicle_plate }}</td>
-                            <td><a href="https://maps.google.com/maps?q={{$trip->location}}">{{ $trip->location }}</a></td>
-                            <td>{{ $trip->direction }}</td>
+                            <td>
+                                <a href="https://maps.google.com/maps?q={{$trip->location}}">{{ $trip->location }}</a>
+                                <br>{{ $trip->direction }}
+                            </td>
+                            <td>{{ $trip->created_at->format('d/m/Y H:i:s') }}</td>
                             <td>{{ $trip->passenger_contact }}</td>
                             <td>
                                 <form action="{{ route('trips.destroy', $trip->id) }}" method="POST" class="d-inline">
@@ -66,8 +69,8 @@
                                                             @foreach($trip->tripReport as $report)
                                                                 <tr>
                                                                     <td>{{ $loop->iteration }}</td>
-                                                                    <td>{{date_format(date_create($report->start_time),'M jS Y H:i:s')}}</td>
-                                                                    <td>{{date_format(date_create($report->end_time),'M jS Y H:i:s')}}</td>
+                                                                    <td>{{date_format(date_create($report->start_time), 'M jS Y H:i:s')}}</td>
+                                                                    <td>{{date_format(date_create($report->end_time), 'M jS Y H:i:s')}}</td>
                                                                     <td>{{ date_diff(date_create($report->start_time), date_create($report->end_time))->format('%h:%i:%s') }}</td>
                                                                     <td>{{$report->start_location}}</td>
                                                                     <td>{{$report->end_location}}</td>
