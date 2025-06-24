@@ -59,21 +59,19 @@ class ShiftController extends Controller
         $response->setContent(json_encode(["C2BPaymentConfirmationResult" => "Success"]));
         return $response;
     }
-    // function Pay($amount, $contact, $id)
-    function Pay()
+    function Pay($amount, $contact, $id)
     {
-
         $url = (env('MPESA_ENV') == 'live') ? 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest' : 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $data = [
             'BusinessShortCode' => env('MPESA_SHORT_CODE'),
             'Password' => $this->lipaNaMpesaPassword(),
             'Timestamp' => date('YmdHis'),
             'TransactionType' => 'CustomerPayBillOnline',
-            'Amount' => '2',
-            'PartyA' => '254701583807',
+            'Amount' => $amount,
+            'PartyA' => $contact,
             'PartyB' => env('MPESA_SHORT_CODE'),
-            'PhoneNumber' => '254701583807',
-            'CallBackURL' => 'https://school.healthandlifecentre.com/api/fee/callback/2' ,
+            'PhoneNumber' => $contact,
+            'CallBackURL' => 'https://school.healthandlifecentre.com/api/fee/callback/'.$id ,
             'AccountReference' => 'Shift Declaration Fee',
             'TransactionDesc' => 'Shift Declaration Fee',
         ];
@@ -103,12 +101,24 @@ class ShiftController extends Controller
             'paid' => false,
         ]);
         $driver = User::findOrFail(request('driver_id'));
-        $phone = $driver->contact;
+        $contact = $driver->contact;
         // initiate mpesa payment
-
-        return response()->json([
-            'message' => 'Shift created successfully',
-        ]);
+        $phone = str_replace('0', '', $contact,1);
+        $phone = '254' . $phone;
+        $amount = 50;
+        $resp = $this->Pay($amount, $phone, $shift->id);
+        if ($resp == '0') {
+            return response()->json([
+                'message' => 'Payment initiated successfully',
+                'shift_id' => $shift->id,
+                'driver' => $driver->avatar,
+            ],200);
+        } else {
+            return response()->json([
+                'message' => 'Payment initiation failed',
+                'error' => $resp,
+            ], 500);
+        }
     }
 
 
