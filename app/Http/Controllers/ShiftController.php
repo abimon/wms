@@ -168,4 +168,13 @@ class ShiftController extends Controller
     {
         //
     }
+    public function isPaid($id)
+    {
+        $shift = Shift::findOrFail($id);
+        if ($shift->paid) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -24,3 +24,17 @@ class Shift extends Model
         return $this->belongsTo(User::class, 'driver_id', 'id');
     }
 }
+
+
+// {
+//     "whole":
+//     {
+//         "stkCallback":
+//         {
+//             "MerchantRequestID":"8a99-4a85-bcdd-4bc42eb7bc556075107",
+//             "CheckoutRequestID":"ws_CO_24062025165805261701583807",
+//             "ResultCode":1032,
+//             "ResultDesc":"Request cancelled by user"
+//         }
+//     }
+// }  
