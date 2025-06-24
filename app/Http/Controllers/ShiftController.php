@@ -108,7 +108,7 @@ class ShiftController extends Controller
         $driver = User::findOrFail(request('driver_id'));
         $contact = $driver->contact;
         // initiate mpesa payment
-        $phone = str_replace('0', '', $contact[0]);
+        $phone = ltrim($contact,0);
         $phone = '254' . $phone;
         $amount = 50;
         $resp = $this->Pay($amount, $phone, $shift->id);
