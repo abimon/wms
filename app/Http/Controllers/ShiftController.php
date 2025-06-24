@@ -172,9 +172,9 @@ class ShiftController extends Controller
     {
         $shift = Shift::findOrFail($id);
         if ($shift->paid) {
-            return true;
+            return response()->json(['isPaid'=> true]);
         } else {
-            return false;
+            return response()->json(['isPaid' => false]);
         }
     }
 }
