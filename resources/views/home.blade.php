@@ -7,8 +7,8 @@
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-book fa-3x text-dark"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Registered Drivers</p>
-                        <h6 class="mb-0">{{App\Models\User::where('role', 'Driver')->count()}}</h6>
+                        <p class="mb-2">Total Revenue</p>
+                        <h6 class="mb-0">{{App\Models\Mpesa::sum('amount')}}</h6>
                     </div>
                 </div>
             </div>

@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="/storage/front/vendors/typicons/typicons.css" />
     <link rel="stylesheet" href="/storage/front/vendors/css/vendor.bundle.base.css" />
     <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- End Font Awesome Icons -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/storage/front/css/style.css" />
     <!-- endinject -->
