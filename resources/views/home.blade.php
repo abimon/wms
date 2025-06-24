@@ -8,7 +8,7 @@
                     <i class="fa fa-dollar-sign fa-3x text-dark"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Revenue</p>
-                        <h6 class="mb-0">{{App\Models\Mpesa::sum('TransAmount')}}</h6>
+                        <h6 class="mb-0">KShs. {{App\Models\Mpesa::sum('TransAmount')}}.00</h6>
                     </div>
                 </div>
             </div>
