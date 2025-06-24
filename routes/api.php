@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PolygonController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripReportController;
 use App\Http\Controllers\UserController;
@@ -43,4 +44,9 @@ Route::controller(TripReportController::class)->prefix('/tripreport')->group(fun
 });
 Route::controller(ReportController::class)->prefix('/report')->group(function(){
     Route::post('/store','store');
+});
+Route::controller(ShiftController::class)->prefix('/shift')->group(function(){
+    Route::get('/','index');
+    Route::post('/store','store');
+    Route::get('/generate-token','generateToken');
 });
