@@ -97,10 +97,13 @@ class ShiftController extends Controller
     public function store()
     {
         $shift = Shift::create([
-            'driver_id' => request('driver_id'),
-            'shift_code' => strtoupper(uniqid()),
-            'vehicle_plate' => request('vehicle_plate'),
-            'paid' => false,
+            'vehicle_plate'=>request('vehicle_plate'),
+            'owner_contact'=>request('owner_contact'),
+            'start_location'=>request('start_location'),
+            'start_time'=>request('start_time'),
+            'shift_code'=>strtoupper(uniqid()),
+            'driver_id'=>request('driver_id'),
+            'paid'=>false,
         ]);
         $driver = User::findOrFail(request('driver_id'));
         $contact = $driver->contact;
