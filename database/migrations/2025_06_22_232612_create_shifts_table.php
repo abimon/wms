@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('shifts', function (Blueprint $table) {
             $table->id();
             $table->string('vehicle_plate');
+            $table->string('owner_contact');
+            $table->string('start_location');
+            $table->string('start_time');
+            $table->string('end_location')->nullable();
+            $table->string('end_time')->nullable();
             $table->string('shift_code')->unique();
             $table->unsignedBigInteger('driver_id');
             $table->boolean('paid')->default(false);

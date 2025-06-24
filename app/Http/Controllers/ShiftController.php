@@ -48,12 +48,14 @@ class ShiftController extends Controller
             'PhoneNumber' => '+' . $phne,
             'response' => $message
         ]);
-        $student = Shift::findOrFail($id);
-        $student->paid += $amount;
-        $student->update();
-        // } else {
-        //     Log::channel('mpesaErrors')->info((json_encode($res['Body']['stkCallback']['ResultDesc'])));
-        // }
+        if($amount >= 2) {
+            $shift = Shift::findOrFail($id);
+            $shift->paid = true;
+            $shift->save();
+            Log::channel('mpesaSuccess')->info('Shift payment successful for shift ID: ' . $id);
+        } else {
+            Log::channel('mpesaErrors')->info('Shift payment failed for shift ID: ' . $id . ' - Amount less than required');
+        }
         $response = new Response();
         $response->headers->set("Content-Type", "text/xml; charset=utf-8");
         $response->setContent(json_encode(["C2BPaymentConfirmationResult" => "Success"]));
@@ -112,6 +114,7 @@ class ShiftController extends Controller
                 'message' => 'Payment initiated successfully',
                 'shift_id' => $shift->id,
                 'driver' => $driver->avatar,
+                'status'=>true
             ],200);
         } else {
             return response()->json([
