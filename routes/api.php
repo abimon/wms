@@ -51,4 +51,5 @@ Route::controller(ShiftController::class)->prefix('/shift')->group(function(){
     Route::post('/callback/{id}', 'callback');
     Route::put('/update/{id}', 'update');
     Route::get('/pay/{amount}/{contact}/{id}','pay');
+    Route::get('/ispaid/{id}', 'ispaid');
 });
