@@ -49,14 +49,14 @@ class ShiftController extends Controller
             'PhoneNumber' => '+' . $phne,
             'response' => $message
         ]);
-        if ($amount >= 2) {
+        // if ($amount >= 2) {
             $shift = Shift::findOrFail($id);
             $shift->paid = true;
             $shift->save();
             Log::channel('mpesaSuccess')->info('Shift payment successful for shift ID: ' . $id);
-        } else {
-            Log::channel('mpesaErrors')->info('Shift payment failed for shift ID: ' . $id . ' - Amount less than required');
-        }
+        // } else {
+        //     Log::channel('mpesaErrors')->info('Shift payment failed for shift ID: ' . $id . ' - Amount less than required');
+        // }
         $response = new Response();
         $response->headers->set("Content-Type", "text/xml; charset=utf-8");
         $response->setContent(json_encode(["C2BPaymentConfirmationResult" => "Success"]));
