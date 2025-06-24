@@ -112,7 +112,20 @@ class ShiftController extends Controller
         $phone = '254' . $phone;
         $amount = 50;
         $resp = $this->Pay($amount, $phone, $shift->id);
-        return $resp;
+        if($resp['ResponseCode'] == 0){
+            return response()->json([
+                'status'=>true,
+                'message'=>'Shift created successfully',
+                'shift_id'=>$shift->id,
+            ],200);
+        }else{
+            return response()->json([
+                'status'=>false,
+                'message'=>'Shift created successfully but payment failed',
+                'shift_id'=>$shift->id,
+            ],500);
+        }
+        
     }
 
 
