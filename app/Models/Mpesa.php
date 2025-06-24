@@ -10,7 +10,7 @@ class Mpesa extends Model
     use HasFactory;
     protected $fillable = [
         'TransactionType',
-        'Student_id',
+        'shift_id',
         'TransAmount',
         'MpesaReceiptNumber',
         'TransactionDate',
