@@ -14,11 +14,11 @@ class ShiftController extends Controller
         $consumer_key = 'yILGU9cIuiSiuO3eOOWAR9VQfGLGLqk8dNQHGZr4zjaa9tCD';
         $consumer_secret = 'mpyTh9iEaCu23dHwsM36fbS1QSDnA03AyMfXCFCGi9sDBEsAFuP1ACyQnFRprddT';
         $credentials = base64_encode($consumer_key . ":" . $consumer_secret);
-        $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
-        $response = Http::withHeaders(["Authorization: Basic " . $credentials])
-        
-            ->get($url);
-        return $response;
+        // $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        $url='https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        // $response = Http::withHeaders(["Authorization: Basic " . $credentials])
+        //     ->get($url);
+        return $credentials;
     }
 
     public function index()
