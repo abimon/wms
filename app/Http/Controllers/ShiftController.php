@@ -11,15 +11,15 @@ class ShiftController extends Controller
 {
     public function generateToken()
     {
-        $consumer_key = 'yILGU9cIuiSiuO3eOOWAR9VQfGLGLqk8dNQHGZr4zjaa9tCD';
-        $consumer_secret = 'mpyTh9iEaCu23dHwsM36fbS1QSDnA03AyMfXCFCGi9sDBEsAFuP1ACyQnFRprddT';
+        $consumer_key = env('MPESA_CONSUMER_KEY');
+        $consumer_secret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumer_key . ":" . $consumer_secret);
-        // $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
-        $url='https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        // $url='https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
         $res = Http::withBasicAuth($consumer_key, $consumer_secret)
             ->get($url);
             $response = json_decode($res, true);
-        return $response;
+        return $response->access_token;
     }
 
     public function index()
