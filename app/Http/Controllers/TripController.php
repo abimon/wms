@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Driver;
+use App\Models\Shift;
 use App\Models\Trip;
 use App\Models\TripReport;
 use Illuminate\Http\Request;
@@ -40,11 +40,11 @@ class TripController extends Controller
             "location" => request("location"),
             "direction" => request("direction")
         ]);
-        $driver =Driver::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first();
+        $shift =Shift::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first();
         return response()->json([
             'message' => 'Success',
             'trip_id' => $trip->id,
-            'driver'=>$driver?($driver->driver):null,
+            'driver'=>$shift?($shift->driver->avatar):null,
         ]);
     }
 

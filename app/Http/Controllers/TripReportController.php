@@ -29,22 +29,32 @@ class TripReportController extends Controller
     public function store(Request $request)
     {
         if (request('start_time') != 'null' && request('start_location') != 'null' && request('direction') != 'null') {
-            TripReport::create([
-                "trip_id" => request('trip_id'),
-                "start_time" => request('start_time'),
-                "start_location" => request('start_location'),
-                "direction" => request('direction'),
-                "accuracy" => request('accuracy'),
-                "speedLimit" => request('speedLimit'),
-                "end_time" => request('end_time'),
-                "highestSpeed" => request('highestSpeed'),
-                "end_location" => request('end_location')
-            ]);
+            try {
+                TripReport::create([
+                    "trip_id" => request('trip_id'),
+                    "start_time" => request('start_time'),
+                    "start_location" => request('start_location'),
+                    "direction" => request('direction'),
+                    "accuracy" => request('accuracy'),
+                    "speedLimit" => request('speedLimit'),
+                    "end_time" => request('end_time'),
+                    "highestSpeed" => request('highestSpeed'),
+                    "end_location" => request('end_location')
+                ]);
+                return response()->json([
+                    'message' => 'Trip report created successfully',
+                ]);
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => 'Error creating trip report: ' . $th->getMessage(),
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Please fill in all fields',
+            ], 200);
         }
-        return response()->json([
-            'message' => 'Trip report created successfully',
-            // 'id' => $tripReport->id
-        ]);
+        
     }
 
     /**
