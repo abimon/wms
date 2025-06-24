@@ -79,7 +79,8 @@ class ShiftController extends Controller
         ];
         $response = Http::withToken($this->generateToken())
             ->post($url, $data);
-        return $response->json();
+            $res =$response->json();
+        return $res->ResponseCode;
     }
     public function index()
     {
