@@ -48,7 +48,7 @@ class ShiftController extends Controller
             'PhoneNumber' => '+' . $phne,
             'response' => $message
         ]);
-        if($amount >= 2) {
+        if ($amount >= 2) {
             $shift = Shift::findOrFail($id);
             $shift->paid = true;
             $shift->save();
@@ -73,14 +73,14 @@ class ShiftController extends Controller
             'PartyA' => $contact,
             'PartyB' => env('MPESA_SHORT_CODE'),
             'PhoneNumber' => $contact,
-            'CallBackURL' => 'https://usalama.apektechinc.com/api/shift/callback/'.$id ,
+            'CallBackURL' => 'https://usalama.apektechinc.com/api/shift/callback/' . $id,
             'AccountReference' => 'Shift Declaration Fee',
             'TransactionDesc' => 'Shift Declaration Fee',
         ];
         $response = Http::withToken($this->generateToken())
             ->post($url, $data);
-            $res =$response->json();
-        return $res->ResponseCode;
+        $res = $response->json();
+        return $res['ResponseCode'] ?? 1;
     }
     public function index()
     {
@@ -105,7 +105,7 @@ class ShiftController extends Controller
         $driver = User::findOrFail(request('driver_id'));
         $contact = $driver->contact;
         // initiate mpesa payment
-        $phone = str_replace('0', '', $contact,1);
+        $phone = str_replace('0', '', $contact, 1);
         $phone = '254' . $phone;
         $amount = 50;
         $resp = $this->Pay($amount, $phone, $shift->id);
@@ -114,8 +114,8 @@ class ShiftController extends Controller
                 'message' => 'Payment initiated successfully',
                 'shift_id' => $shift->id,
                 'driver' => $driver->avatar,
-                'status'=>true
-            ],200);
+                'status' => true
+            ], 200);
         } else {
             return response()->json([
                 'message' => 'Payment initiation failed',
