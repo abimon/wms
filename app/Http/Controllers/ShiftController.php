@@ -15,7 +15,8 @@ class ShiftController extends Controller
         $consumer_secret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumer_key . ":" . $consumer_secret);
         $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
-        $response = Http::withHeaders(['Content-Type : application/json', "Authorization: Basic " . $credentials])
+        $response = Http::withHeaders(["Authorization: Basic " . $credentials])
+        
             ->get($url);
         return $response;
     }
