@@ -19,7 +19,7 @@ class ShiftController extends Controller
         $res = Http::withBasicAuth($consumer_key, $consumer_secret)
             ->get($url);
             $response = json_decode($res, true);
-        return $response->access_token;
+        return $response;
     }
 
     public function index()
