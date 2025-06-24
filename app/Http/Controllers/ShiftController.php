@@ -71,7 +71,7 @@ class ShiftController extends Controller
             'PartyA' => $contact,
             'PartyB' => env('MPESA_SHORT_CODE'),
             'PhoneNumber' => $contact,
-            'CallBackURL' => 'https://school.healthandlifecentre.com/api/fee/callback/'.$id ,
+            'CallBackURL' => 'https://usalama.apektechinc.com/api/shift/callback/'.$id ,
             'AccountReference' => 'Shift Declaration Fee',
             'TransactionDesc' => 'Shift Declaration Fee',
         ];

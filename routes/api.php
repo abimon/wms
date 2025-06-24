@@ -48,5 +48,6 @@ Route::controller(ReportController::class)->prefix('/report')->group(function(){
 Route::controller(ShiftController::class)->prefix('/shift')->group(function(){
     Route::get('/','index');
     Route::post('/store','store');
-    Route::get('/generate-token','pay');
+    Route::post('/callback/{id}', 'callback');
+    Route::get('/pay/{amount}/{contact}/{id}','pay');
 });
