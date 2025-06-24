@@ -16,7 +16,7 @@ class ShiftController extends Controller
         $credentials = base64_encode($consumer_key . ":" . $consumer_secret);
         $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
         $response = Http::withHeaders(['Content-Type : application/json', "Authorization: Basic " . $credentials])
-            ->post($url);
+            ->get($url);
         return $response;
     }
 
