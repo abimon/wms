@@ -33,6 +33,7 @@ class ShiftController extends Controller
     public function Callback($id)
     {
         $res = request();
+        Log::channel('mpesaSuccess')->info(json_encode(['whole' => $res['Body']]));
         // if ($res['Body']['stkCallback']['ResultCode'] == 0) {
         $message = $res['Body']['stkCallback']['ResultDesc'];
         $amount = $res['Body']['stkCallback']['CallbackMetadata']['Item'][0]['Value'];
