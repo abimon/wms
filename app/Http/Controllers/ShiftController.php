@@ -18,8 +18,8 @@ class ShiftController extends Controller
         $url='https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
         $res = Http::withBasicAuth($consumer_key, $consumer_secret)
             ->get($url);
-            $response = json_decode($res->getBody(), true);
-        return $response->access_token;
+            $response = json_decode($res, true);
+        return $response;
     }
 
     public function index()
