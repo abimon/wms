@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/storage/front/vendors/css/vendor.bundle.base.css" />
     <!-- endinject -->
     <!-- Font Awesome Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     
     <!-- End Font Awesome Icons -->
     <!-- inject:css -->
