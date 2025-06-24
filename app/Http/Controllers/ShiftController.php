@@ -98,35 +98,35 @@ class ShiftController extends Controller
     public function store()
     {
         $shift = Shift::create([
-            'vehicle_plate'=>request('vehicle_plate'),
-            'owner_contact'=>request('owner_contact'),
-            'start_location'=>request('start_location'),
-            'start_time'=>request('start_time'),
-            'shift_code'=>strtoupper(uniqid()),
-            'driver_id'=>request('driver_id'),
-            'paid'=>false,
+            'vehicle_plate' => request('vehicle_plate'),
+            'owner_contact' => request('owner_contact'),
+            'start_location' => request('start_location'),
+            'start_time' => request('start_time'),
+            'shift_code' => strtoupper(uniqid()),
+            'driver_id' => request('driver_id'),
+            'paid' => false,
         ]);
         $driver = User::findOrFail(request('driver_id'));
         $contact = $driver->contact;
         // initiate mpesa payment
-        $phone = ltrim($contact,0);
+        $phone = ltrim($contact, 0);
         $phone = '254' . $phone;
         $amount = 50;
         $resp = $this->Pay($amount, $phone, $shift->id);
-        if($resp['ResponseCode'] == 0){
+        if ($resp['ResponseCode'] == 0) {
             return response()->json([
-                'status'=>true,
-                'message'=>'Shift created successfully',
-                'shift_id'=>$shift->id,
-            ],200);
-        }else{
+                'status' => true,
+                'message' => 'Shift created successfully',
+                'shift_id' => $shift->id,
+            ], 200);
+        } else {
             return response()->json([
-                'status'=>false,
-                'message'=>'Shift created successfully but payment failed',
-                'shift_id'=>$shift->id,
-            ],500);
+                'status' => false,
+                'message' => 'Shift created successfully but payment failed',
+                'shift_id' => $shift->id,
+            ], 500);
         }
-        
+
     }
 
 
@@ -140,10 +140,29 @@ class ShiftController extends Controller
         //
     }
 
-    public function update(Request $request, Shift $Shift)
+    public function update($id)
     {
-        //
+        try {
+            $shift = Shift::findOrFail($id);
+            if (request('end_location') != null) {
+                $shift->end_location = request('end_location');
+            }
+            if (request('end_time') != null) {
+                $shift->end_time = request('end_time');
+            }
+            $shift->update();
+            return response()->json([
+                'status' => true,
+                'message' => 'Shift updated successfully',
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th,
+            ], 404);
+        }
     }
+
 
     public function destroy(Shift $Shift)
     {
