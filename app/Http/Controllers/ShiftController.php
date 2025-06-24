@@ -9,17 +9,17 @@ use Illuminate\Support\Facades\Http;
 
 class ShiftController extends Controller
 {
-    public function generateToken(){
+    public function generateToken()
+    {
         $consumer_key = env('MPESA_CONSUMER_KEY');
         $consumer_secret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumer_key . ":" . $consumer_secret);
         $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
-        $response = Http::withBody('application/json')
-        ->withHeaders(['Content-Type : application/json', "Authorization: Basic " . $credentials])
-        ->post($url);
-            return $response;
-        }
-    
+        $response = Http::withHeaders(['Content-Type : application/json', "Authorization: Basic " . $credentials])
+            ->post($url);
+        return $response;
+    }
+
     public function index()
     {
         $shifts = Shift::orderBy('created_at', 'desc')->get();
@@ -31,7 +31,7 @@ class ShiftController extends Controller
         //
     }
 
- 
+
     public function store()
     {
         $shift = Shift::create([
