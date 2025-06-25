@@ -3,6 +3,7 @@
 use App\Http\Controllers\PolygonController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\ShiftReportController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripReportController;
 use App\Http\Controllers\UserController;
@@ -52,4 +53,9 @@ Route::controller(ShiftController::class)->prefix('/shift')->group(function(){
     Route::put('/update/{id}', 'update');
     Route::get('/pay/{amount}/{contact}/{id}','pay');
     Route::get('/ispaid/{id}', 'ispaid');
+});
+Route::controller(ShiftReportController::class)->prefix('shiftreport')->group(function(){
+    Route::get('/','index');
+    Route::post('/store','store');
+    Route::put('/update/{id}','update');
 });

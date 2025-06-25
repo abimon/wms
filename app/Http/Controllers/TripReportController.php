@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ShiftReport;
 use App\Models\TripReport;
 use Illuminate\Http\Request;
 
@@ -30,17 +31,32 @@ class TripReportController extends Controller
     {
         if (request('start_time') != 'null' && request('start_location') != 'null' && request('direction') != 'null') {
             try {
-                TripReport::create([
-                    "trip_id" => request('trip_id'),
-                    "start_time" => request('start_time'),
-                    "start_location" => request('start_location'),
-                    "direction" => request('direction'),
-                    "accuracy" => request('accuracy'),
-                    "speedLimit" => request('speedLimit'),
-                    "end_time" => request('end_time'),
-                    "highestSpeed" => request('highestSpeed'),
-                    "end_location" => request('end_location')
-                ]);
+                if(request('isPassenger')==1){
+                    TripReport::create([
+                        "trip_id" => request('trip_id'),
+                        "start_time" => request('start_time'),
+                        "start_location" => request('start_location'),
+                        "direction" => request('direction'),
+                        "accuracy" => request('accuracy'),
+                        "speedLimit" => request('speedLimit'),
+                        "end_time" => request('end_time'),
+                        "highestSpeed" => request('highestSpeed'),
+                        "end_location" => request('end_location')
+                    ]);
+                }else{
+                    ShiftReport::create([
+                        "shift_id" => request('trip_id'),
+                        "start_time" => request('start_time'),
+                        "start_location" => request('start_location'),
+                        "direction" => request('direction'),
+                        "accuracy" => request('accuracy'),
+                        "speedLimit" => request('speedLimit'),
+                        "end_time" => request('end_time'),
+                        "highestSpeed" => request('highestSpeed'),
+                        "end_location" => request('end_location'),
+                        'type'=>'speed'
+                    ]);
+                }
                 return response()->json([
                     'message' => 'Trip report created successfully',
                 ]);
