@@ -48,9 +48,17 @@ class ShiftReportController extends Controller
             ]);
         }
     }
-    public function show(ShiftReport $shiftReport)
+    public function show($id)
     {
-        //
+        try {
+            $shiftReport = ShiftReport::where('shift_id',$id)->get();
+            return  $shiftReport;
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status'=> false,
+                'message'=> $th->getMessage()
+            ]);
+        }
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Report;
+use App\Models\Shift;
+use App\Models\Trip;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+        $vehicles = Vehicle::all();
     }
 
     /**
@@ -47,9 +50,10 @@ class VehicleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Vehicle $vehicle)
+    public function show($id)
     {
-        //
+        $vehicle=Vehicle::where('userId',$id)->get();
+        return $vehicle;
     }
 
     /**

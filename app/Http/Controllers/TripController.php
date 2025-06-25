@@ -51,9 +51,10 @@ class TripController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Trip $trip)
+    public function show($plate)
     {
-        //
+        $trips = Trip::where('vehicle_plate', $plate)->get();
+        return $trips;
     }
 
     /**
@@ -69,7 +70,7 @@ class TripController extends Controller
      */
     public function update(Request $request, Trip $trip)
     {
-        //
+        
     }
 
     /**

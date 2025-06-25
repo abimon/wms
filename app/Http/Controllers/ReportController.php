@@ -42,9 +42,10 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Report $report)
+    public function show($plate)
     {
-        //
+        $reports = Report::where('vehicle', $plate)->get();
+        return $reports;
     }
 
     /**

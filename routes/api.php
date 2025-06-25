@@ -7,6 +7,7 @@ use App\Http\Controllers\ShiftReportController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,13 +39,16 @@ Route::controller(PolygonController::class)->prefix('/polygons')->group(function
 });
 Route::controller(TripController::class)->prefix('/trip')->group(function(){
     Route::post('/store','store');
+    Route::get('/show/{plate}', 'show');
 });
 Route::controller(TripReportController::class)->prefix('/tripreport')->group(function(){
     Route::post('/store','store');
     Route::put('/update/{id}','update');
+    Route::get('/show/{id}', 'show');
 });
 Route::controller(ReportController::class)->prefix('/report')->group(function(){
     Route::post('/store','store');
+    Route::get('/show/{plate}','show');
 });
 Route::controller(ShiftController::class)->prefix('/shift')->group(function(){
     Route::get('/','index');
@@ -53,9 +57,17 @@ Route::controller(ShiftController::class)->prefix('/shift')->group(function(){
     Route::put('/update/{id}', 'update');
     Route::get('/pay/{amount}/{contact}/{id}','pay');
     Route::get('/ispaid/{id}', 'ispaid');
+    Route::get('/getshift/{plate}', 'getShift');
 });
 Route::controller(ShiftReportController::class)->prefix('shiftreport')->group(function(){
     Route::get('/','index');
     Route::post('/store','store');
     Route::put('/update/{id}','update');
+    Route::get('/show/{id}', 'show');
+});
+Route::controller(VehicleController::class)->prefix('/vehicle')->group(function(){
+    Route::get('/','index');
+    Route::post('/store','store');
+    Route::put('/update/{id}','update');
+    Route::get('/show/{id}', 'show');
 });

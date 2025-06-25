@@ -179,8 +179,6 @@ class ShiftController extends Controller
             ], 404);
         }
     }
-
-
     public function destroy($id)
     {
         Shift::destroy($id);
@@ -195,4 +193,9 @@ class ShiftController extends Controller
             return response()->json(['isPaid' => false]);
         }
     }
+    public function getShift($plate){
+        $shift = Shift::where('vehicle_plate', $plate)->get();
+        return $shift;
+    }
 }
+

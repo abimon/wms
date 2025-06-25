@@ -18,6 +18,7 @@ class UserController extends Controller
             'first_name' => $name[0],
             'last_name' => end($name),
             'email' => request('email'),
+            'company' => request('company'),
             'contact' => request('contact'),
             'role' => request('role'),
             'password' => Hash::make(request('password')),
