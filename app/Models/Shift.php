@@ -23,6 +23,9 @@ class Shift extends Model
     {
         return $this->belongsTo(User::class, 'driver_id', 'id');
     }
+    public function shiftReports(){
+        return $this->hasMany(ShiftReport::class,'shift_id','id');
+    }
 }
 
 
