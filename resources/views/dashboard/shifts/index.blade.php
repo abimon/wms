@@ -33,7 +33,7 @@
                             <td>
                                 <a href="{{ route('shifts.show', $shift->id)}}">
                                     <button type="button" class="btn btn-primary">
-                                        Reports({{ $shift->shiftReport->count() }})
+                                        Reports({{ $shift->shiftReports->count() }})
                                     </button>
                                 </a>
                             </td>
