@@ -99,7 +99,7 @@ class ShiftController extends Controller
     {
         $shi=Shift::where('driver_id',request('driver_id'))->orderBy('created_at','desc')->first();
         $payment = Mpesa::where('shift_id',$shi->id)->first();
-        if($payment){
+        if($payment && $payment->created_at->diffInHours() < 24){
             $paid = true;
         }else{
             $paid = false;

@@ -21,7 +21,7 @@
                                 <a href="https://maps.google.com/maps?q={{$shift->start_location}}">{{ $shift->start_location }}</a>
                                 <br>{{ $shift->direction }}
                             </td>
-                            <td>{{ $shift->created_at->format('F jS H:i:s') }}</td>
+                            <td>{{ $shift->created_at->diffInHours() }}</td>
                             <td>{{ $shift->passenger_contact }}</td>
                             <td>
                                 <form action="{{ route('shifts.destroy', $shift->id) }}" method="POST" class="d-inline">
