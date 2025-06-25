@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function login()
     {
-        $user = User::where('phone', request('contact'))->first();
+        $user = User::where('contact', request('phone'))->first();
         if ($user && Hash::check(request()->password, $user->password)) {
             return response()->json($user, 200);
         }
