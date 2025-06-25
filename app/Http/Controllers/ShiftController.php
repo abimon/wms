@@ -111,7 +111,7 @@ class ShiftController extends Controller
         // initiate mpesa payment
         $phone = ltrim($contact, 0);
         $phone = '254' . $phone;
-        $amount = 50;
+        $amount = 1;
         $resp = $this->Pay($amount, $phone, $shift->id);
         if ($resp['ResponseCode'] == 0) {
             return response()->json([
