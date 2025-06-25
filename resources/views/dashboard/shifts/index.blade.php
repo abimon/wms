@@ -36,6 +36,11 @@
                                         Reports({{ $shift->shiftReports->count() }})
                                     </button>
                                 </a>
+                                <form action="{{ route('shifts.destroy', $shift->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

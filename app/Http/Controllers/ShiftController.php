@@ -97,6 +97,13 @@ class ShiftController extends Controller
 
     public function store()
     {
+        $shi=Shift::where('driver_id',request('driver_id'))->orderBy('created_at','desc')->first();
+        $payment = Mpesa::where('shift_id',$shi->id)->first();
+        if($payment){
+            $paid = true;
+        }else{
+            $paid = false;
+        }
         $shift = Shift::create([
             'vehicle_plate' => request('vehicle_plate'),
             'owner_contact' => request('owner_contact'),
@@ -104,16 +111,25 @@ class ShiftController extends Controller
             'start_time' => request('start_time'),
             'shift_code' => strtoupper(uniqid()),
             'driver_id' => request('driver_id'),
-            'paid' => false,
+            'paid' => $paid,
         ]);
-        $driver = User::findOrFail(request('driver_id'));
-        $contact = $driver->contact;
-        // initiate mpesa payment
-        $phone = ltrim($contact, 0);
-        $phone = '254' . $phone;
-        $amount = 1;
-        $resp = $this->Pay($amount, $phone, $shift->id);
-        if ($resp['ResponseCode'] == 0) {
+        if(!$paid){
+            $driver = User::findOrFail(request('driver_id'));
+            $contact = $driver->contact;
+            // initiate mpesa payment
+            $phone = ltrim($contact, 0);
+            $phone = '254' . $phone;
+            $amount = 1;
+            $resp = $this->Pay($amount, $phone, $shift->id);
+            if($resp['ResponseCode'] == 0){
+                $state=true;
+            }else{
+                $state=false;
+            }
+        }else{
+            $state=true;
+        }
+        if ($state) {
             return response()->json([
                 'status' => true,
                 'message' => 'Shift created successfully',
@@ -165,9 +181,10 @@ class ShiftController extends Controller
     }
 
 
-    public function destroy(Shift $Shift)
+    public function destroy($id)
     {
-        //
+        Shift::destroy($id);
+        return back()->with('success', 'Shift deleted successfully');
     }
     public function isPaid($id)
     {
