@@ -130,9 +130,10 @@ class ShiftController extends Controller
     }
 
 
-    public function show(Shift $Shift)
+    public function show($id)
     {
-        //
+        $shift = Shift::findOrFail($id);
+        return view('dashboard.shifts.show', compact('shift'));
     }
 
     public function edit(Shift $Shift)
