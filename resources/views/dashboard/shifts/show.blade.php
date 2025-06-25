@@ -17,7 +17,7 @@
 
             </thead>
             <tbody>
-                @foreach($shift->shiftreport as $report)
+                @foreach($shift->shiftReports as $report)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $report->type }}</td>
