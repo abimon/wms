@@ -31,11 +31,11 @@ class UserController extends Controller
 
     public function login()
     {
-        $user = User::where('email', request('email'))->first();
+        $user = User::where('phone', request('contact'))->first();
         if ($user && Hash::check(request()->password, $user->password)) {
             return response()->json($user, 200);
         }
-        return response()->json(["message" => 'Wrong email or password. Please try again'], 400);
+        return response()->json(["message" => 'Wrong phone number or password. Please try again'], 400);
     }
 
     public function show($id)
