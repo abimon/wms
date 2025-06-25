@@ -23,7 +23,7 @@
                         <td>{{ $report->type }}</td>
                         <td>{{date_format(date_create($report->start_time), 'M jS Y H:i:s')}}</td>
                         <td>{{date_format(date_create($report->end_time), 'M jS Y H:i:s')}}</td>
-                        <td></td>
+                        <!-- <td></td> -->
                         <td>{{$report->start_location}}</td>
                         <td>{{$report->end_location}}</td>
                         <td>{{$report->direction}}</td>
