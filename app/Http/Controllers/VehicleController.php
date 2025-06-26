@@ -75,8 +75,9 @@ class VehicleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vehicle $vehicle)
+    public function destroy($id)
     {
-        //
+        Vehicle::destroy($id);
+        return response()->json(['message'=> 'Vehicle deleted successfully']);
     }
 }

@@ -70,4 +70,5 @@ Route::controller(VehicleController::class)->prefix('/vehicle')->group(function(
     Route::post('/store','store');
     Route::put('/update/{id}','update');
     Route::get('/show/{id}', 'show');
+    Route::get('/delete/{id}', 'destroy');
 });
