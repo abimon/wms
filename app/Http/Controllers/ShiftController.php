@@ -194,8 +194,22 @@ class ShiftController extends Controller
         }
     }
     public function getShift($plate){
-        $shift = Shift::where('vehicle_plate', $plate)->get();
-        return $shift;
+        $shifts = Shift::where('vehicle_plate', $plate)->orderBy('created_at', 'desc')->get();
+        
+        $data=[''];
+        foreach ($shifts as $shift) {
+            $d = json_encode([
+                'start_location'=>$shift->start_location,
+                'start_time'=>$shift->start_time,
+                'end_location'=>$shift->end_location,
+                'end_time'=>$shift->end_time,
+                'shift_code'=>$shift->shift_code,
+                'driver'=>$shift->driver->first_name.' '.$shift->driver->last_name,
+                'shift_overspeeds'=>$shift->shiftReports->where('type','speed')->count(),
+            ]);
+            array_push($data, $d);
+        }
+        return $data;
     }
 }
 
