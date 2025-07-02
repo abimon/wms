@@ -29,9 +29,12 @@ class VehicleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         try {
+            if(Vehicle::where('plate',request('plate'))->exists()){
+                return response()->json(['message'=> 'Vehicle already exists']);
+            }
             Vehicle::create([
                 'plate' => request('plate'),
                 'make' => request('make'),
@@ -41,7 +44,7 @@ class VehicleController extends Controller
                 'inspection' => request('inspection'),
                 'userId' => request('userId'),
             ]);
-            return response()->json(['message' => 'Vehicle created successfully']);
+            return response()->json(['message' => 'Vehicle Added Successfully ']);
         } catch (\Throwable $th) {
             return response()->json(['message'=> $th->getMessage()]);
         }
