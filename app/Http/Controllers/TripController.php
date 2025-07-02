@@ -57,7 +57,7 @@ class TripController extends Controller
         $data = [];
         foreach ($trips as $trip) {
             $time = $trip->tripReport->map(function ($t) {
-                return date_create($t->end_time)->getTimestamp() - date_create($t->start_time)->getTimestamp();
+                return (date_create($t->end_time)->getTimestamp() - date_create($t->start_time)->getTimestamp())/60;
             })->sum();
             array_push($data,['trip'=>$trip,'overspeeds'=>$trip->tripReport->count(),'total_time'=>$time]);
         }
