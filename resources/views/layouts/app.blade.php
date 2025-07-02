@@ -12,7 +12,7 @@
     <!-- endinject -->
     <!-- Font Awesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- End Font Awesome Icons -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/storage/front/css/style.css" />
@@ -78,7 +78,8 @@
                                     var seconds = currentTime.getSeconds()
                                     if (seconds < 10) {
                                         seconds = "0" + seconds
-                                    } if (minutes < 10) {
+                                    }
+                                    if (minutes < 10) {
                                         minutes = "0" + minutes
                                     }
                                     var t_str = hours + ":" + minutes + ":" + seconds + " ";
@@ -235,9 +236,15 @@
                             <span class="menu-title">Trips</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shifts.index') }}">
+                            <i class="fa fa-taxi menu-icon"></i>
+                            <span class="menu-title">Shifts</span>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"  href="/polygons" >
+                        <a class="nav-link" href="/polygons">
                             <i class="typcn typcn-compass menu-icon"></i>
                             <span class="menu-title">Polygons</span>
                         </a>
@@ -255,16 +262,16 @@
             <div class="main-panel">
                 <div class="content-wrapper">
                     @if(Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Error!</strong> {{ Session::get('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> {{ Session::get('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     @endif
                     @if(Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong> {{ Session::get('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> {{ Session::get('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     @endif
                     @yield('content')
                 </div>
