@@ -194,7 +194,8 @@ class ShiftController extends Controller
         }
     }
     public function getShift($plate){
-        $shifts = Shift::where('vehicle_plate', $plate)->orderBy('created_at', 'desc')->get();
+        $shifts = Shift::where('vehicle_plate', $plate)->orderBy('created_at', 'desc')
+        ->get();
         
         $data=[];
         foreach ($shifts as $shift) {
