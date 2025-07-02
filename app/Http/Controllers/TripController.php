@@ -56,7 +56,10 @@ class TripController extends Controller
         $trips = Trip::where('vehicle_plate', $plate)->get();
         $data = [];
         foreach ($trips as $trip) {
-            array_push($data,['trip'=>$trip,'overspeeds'=>$trip->tripReport->count()]);
+            $time = $trip->tripReport->map(function ($t) {
+                return $t->updated_at->getTimestamp() - $t->created_at->getTimestamp();
+            })->sum();
+            array_push($data,['trip'=>$trip,'overspeeds'=>$trip->tripReport->count(),'total_time'=>$time]);
         }
         return $data;
     }
