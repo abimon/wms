@@ -53,7 +53,7 @@ class TripController extends Controller
      */
     public function show($plate)
     {
-        $trips = Trip::where('vehicle_plate', $plate)->join('trip_reports', 'trip_reports.trip_id', '=', 'trips.id')->get();
+        $trips = Trip::where('vehicle_plate', $plate)->get();
         $data = [];
         foreach ($trips as $trip) {
             array_push($data,['trip'=>$trip,'overspeeds'=>$trip->tripReport->count()]);
