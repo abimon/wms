@@ -48,10 +48,13 @@ class TripController extends Controller
         ]);
     }
 
+    public function show(Trip $trip){
+        return view('dashboard.trips.show', compact('trip'));
+    }
     /**
      * Display the specified resource.
      */
-    public function show($plate)
+    public function showTrip($plate)
     {
         $trips = Trip::where('vehicle_plate', $plate)->get();
         $data = [];

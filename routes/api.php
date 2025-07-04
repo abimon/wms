@@ -39,7 +39,7 @@ Route::controller(PolygonController::class)->prefix('/polygons')->group(function
 });
 Route::controller(TripController::class)->prefix('/trip')->group(function(){
     Route::post('/store','store');
-    Route::get('/show/{plate}', 'show');
+    Route::get('/show/{plate}', 'showTrip');
 });
 Route::controller(TripReportController::class)->prefix('/tripreport')->group(function(){
     Route::post('/store','store');
