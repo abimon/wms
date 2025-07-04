@@ -31,7 +31,7 @@
                                 </form>
                             </td>
                             <td>
-                                <a href="{{ route('trips.show', $trip->id)">
+                                <a href="{{ route('trips.show', $trip->id)}}">
                                     <button type="button" class="btn btn-primary">
                                     Overspeed instances({{$trip->tripReport->count()}})</button>
                                 </a>
