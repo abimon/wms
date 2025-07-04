@@ -31,20 +31,22 @@ class TripReportController extends Controller
     {
         if (request('start_time') != 'null' && request('start_location') != 'null' && request('direction') != 'null') {
             try {
-                if(request('isPassenger')==1){
-                    TripReport::create([
-                        "trip_id" => request('trip_id'),
-                        "start_time" => request('start_time'),
-                        "start_location" => request('start_location'),
-                        "direction" => request('direction'),
-                        "accuracy" => request('accuracy'),
-                        "speedLimit" => request('speedLimit'),
-                        "end_time" => request('end_time'),
-                        "highestSpeed" => request('highestSpeed'),
-                        "end_location" => request('end_location')
-                    ]);
-                }else{
-                    ShiftReport::create([
+                if (request('isPassenger') == 1) {
+                    if (TripReport::where([['start_time', request('start_time')], ['trip_id', request('trip_id')]])->count() == 0) {
+                        TripReport::create([
+                            "trip_id" => request('trip_id'),
+                            "start_time" => request('start_time'),
+                            "start_location" => request('start_location'),
+                            "direction" => request('direction'),
+                            "accuracy" => request('accuracy'),
+                            "speedLimit" => request('speedLimit'),
+                            "end_time" => request('end_time'),
+                            "highestSpeed" => request('highestSpeed'),
+                            "end_location" => request('end_location')
+                        ]);
+                    }
+                } else {
+                    if(ShiftReport::where([['shift_id', request('trip_id')], ['start_time', request('start_time')]])->count() == 0){ShiftReport::create([
                         "shift_id" => request('trip_id'),
                         "start_time" => request('start_time'),
                         "start_location" => request('start_location'),
@@ -54,8 +56,8 @@ class TripReportController extends Controller
                         "end_time" => request('end_time'),
                         "highestSpeed" => request('highestSpeed'),
                         "end_location" => request('end_location'),
-                        'type'=>'speed'
-                    ]);
+                        'type' => 'speed'
+                    ]);}
                 }
                 return response()->json([
                     'message' => 'Trip report created successfully',
@@ -70,7 +72,6 @@ class TripReportController extends Controller
                 'message' => 'Please fill in all fields',
             ], 200);
         }
-        
     }
 
     /**
