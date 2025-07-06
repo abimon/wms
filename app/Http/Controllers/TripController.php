@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Polygon;
 use App\Models\Safetyimage;
 use App\Models\Shift;
 use App\Models\Trip;
@@ -16,7 +17,7 @@ class TripController extends Controller
      */
     public function index()
     {
-        TripReport::where('start_time','null')->delete();
+        TripReport::where('start_time', 'null')->delete();
         $trips = Trip::orderBy('id', 'desc')->get();
         return view('dashboard.trips.index', compact('trips'));
     }
@@ -35,23 +36,42 @@ class TripController extends Controller
     public function store()
     {
         // dd(request());
-        $trip=Trip::create([
+        $trip = Trip::create([
             "vehicle_plate" => request("vehicle_plate"),
             "passenger_contact" => request("passenger_contact"),
             "location" => request("location"),
             "direction" => request("direction")
         ]);
-        $shift =Shift::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first();
+        $polys  = Polygon::all();
+        $zones = [];
+        foreach ($polys as $poly) {
+            $polygons = [];
+            for ($i = 0; $i < 8; $i++) {
+                if ($poly->{"point" . $i} != null) {
+                    $point = explode(",", $poly->{"point" . $i});
+                    array_push($polygons, $point);
+                }
+            }
+            array_push($zones, [
+                'name' => $poly->name,
+                'coordinates' => $polygons,
+                'speed_limit' => $poly->speed_limit,
+                'code' => $poly->code
+            ]);
+        }
+        $shift = Shift::where('vehicle_plate', request('vehicle_plate'))->orderBy('created_at', 'desc')->first();
         $image = Safetyimage::all()->shuffle()->first();
         return response()->json([
             'message' => 'Success',
             'trip_id' => $trip->id,
-            'driver'=>$shift?($shift->driver->avatar):null,
-            'image'=>$image->path,
+            'driver' => $shift ? ($shift->driver->avatar) : null,
+            'image' => $image->path,
+            'polygons' => $zones
         ]);
     }
 
-    public function show(Trip $trip){
+    public function show(Trip $trip)
+    {
         return view('dashboard.trips.show', compact('trip'));
     }
     /**
@@ -63,9 +83,9 @@ class TripController extends Controller
         $data = [];
         foreach ($trips as $trip) {
             $time = $trip->tripReport->map(function ($t) {
-                return (date_create($t->end_time)->getTimestamp() - date_create($t->start_time)->getTimestamp())/60;
+                return (date_create($t->end_time)->getTimestamp() - date_create($t->start_time)->getTimestamp()) / 60;
             })->sum();
-            array_push($data,['trip'=>$trip,'overspeeds'=>$trip->tripReport->count(),'total_time'=>$time]);
+            array_push($data, ['trip' => $trip, 'overspeeds' => $trip->tripReport->count(), 'total_time' => $time]);
         }
         return $data;
     }
@@ -81,10 +101,7 @@ class TripController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Trip $trip)
-    {
-        
-    }
+    public function update(Request $request, Trip $trip) {}
 
     /**
      * Remove the specified resource from storage.
