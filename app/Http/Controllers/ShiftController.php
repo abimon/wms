@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mpesa;
+use App\Models\Polygon;
+use App\Models\Safetyimage;
 use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -113,6 +115,24 @@ class ShiftController extends Controller
             'driver_id' => request('driver_id'),
             'paid' => $paid,
         ]);
+        $polys  = Polygon::all();
+        $zones = [];
+        foreach ($polys as $poly) {
+            $polygons = [];
+            for ($i = 0; $i < 8; $i++) {
+                if ($poly->{"point" . $i} != null) {
+                    $point = explode(",", $poly->{"point" . $i});
+                    array_push($polygons, $point);
+                }
+            }
+            array_push($zones, [
+                'name' => $poly->name,
+                'coordinates' => $polygons,
+                'speed_limit' => $poly->speed_limit,
+                'code' => $poly->code
+            ]);
+        }
+        $image = Safetyimage::all()->shuffle()->first();
         if(!$paid){
             $driver = User::findOrFail(request('driver_id'));
             $contact = $driver->contact;
@@ -133,13 +153,17 @@ class ShiftController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Shift created successfully',
+                'image' => $image->path,
                 'shift_id' => $shift->id,
+                'polygons' => json_encode($zones)
             ], 200);
         } else {
             return response()->json([
                 'status' => false,
                 'message' => 'Shift created successfully but payment failed',
                 'shift_id' => $shift->id,
+                'image' => $image->path,
+                'polygons' => json_encode($zones)
             ], 500);
         }
 
