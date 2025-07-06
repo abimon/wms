@@ -33,6 +33,8 @@ class ShiftReportController extends Controller
                 'shift_id'=>request('shift_id'),
                 'start_time'=>request('start_time'),
                 'start_location'=>request('start_location'),
+                'end_time' => request('end_time'),
+                'end_location' => request('end_location'),
                 'direction'=>request('direction'),
                 'accuracy'=>request('accuracy'),
                 'type'=>request('type')
