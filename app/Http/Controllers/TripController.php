@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Safetyimage;
 use App\Models\Shift;
 use App\Models\Trip;
 use App\Models\TripReport;
@@ -41,10 +42,12 @@ class TripController extends Controller
             "direction" => request("direction")
         ]);
         $shift =Shift::where('vehicle_plate',request('vehicle_plate'))->orderBy('created_at', 'desc')->first();
+        $image = Safetyimage::all()->shuffle()->first();
         return response()->json([
             'message' => 'Success',
             'trip_id' => $trip->id,
             'driver'=>$shift?($shift->driver->avatar):null,
+            'image'=>$image->path,
         ]);
     }
 
