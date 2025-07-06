@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PolygonController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SafetyimageController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
         'trips'=>TripController::class,
         'shifts'=>ShiftController::class,
         'users' =>UserController::class,
+        'safeimages'=>SafetyimageController::class,
     ]);
 });
 Route::get('/home', function (){
