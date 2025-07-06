@@ -312,7 +312,7 @@
 
                                     <div class="form-group">
                                         <label for="name">Files</label>
-                                        <input type="file" class="form-control" id="name" name="files" multiple>
+                                        <input type="file" class="form-control" id="name" name="files[]" multiple>
                                     </div>
 
                                 </div>

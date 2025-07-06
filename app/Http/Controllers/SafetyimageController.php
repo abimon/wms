@@ -29,6 +29,7 @@ class SafetyimageController extends Controller
      */
     public function store(Request $request)
     {
+        dd(request()->file('files'));
         $i = 0;
         foreach (request()->file('files') as $file) {
             $filename = Hash::make(uniqid() . time()) . '.' . ($file->getClientOriginalExtension());
