@@ -255,82 +255,80 @@
                             <span class="menu-title">Upload Safety Images</span>
                         </a>
                     </li>
-                    <div class="modal fade" id="uploadSafe" tabindex="-1" aria-labelledby="uploadSafeLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="uploadSafeLabel">Add Safety Images</h5>
-                                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                                <div>
-                                    <form id="addPolygonForm" action="{{ route('safeimages.store') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="modal-body">
-
-                                            <div class="form-group">
-                                                <label for="name">Files</label>
-                                                <input type="file" class="form-control" id="name" name="files" multiple>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" id="close" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false"
+                            aria-controls="auth">
+                            <i class="typcn typcn-user menu-icon"></i>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> {{ Session::get('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+                    @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> {{ Session::get('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+                    @yield('content')
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- Footer -->
+                <footer class="footer">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-dark text-center text-sm-left d-block d-sm-inline-block">Copyright ©
+                                    {{ date('Y') }} Usalama. All rights reserved.</span>
                             </div>
                         </div>
                     </div>
-        </div>
-
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false"
-                aria-controls="auth">
-                <i class="typcn typcn-user menu-icon"></i>
-                <span class="menu-title">Users</span>
-            </a>
-        </li>
-        </ul>
-        </nav>
-        <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-                @if(Session::has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error!</strong> {{ Session::get('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
-                @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong> {{ Session::get('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
-                @yield('content')
+                </footer>
+                <!-- End Footer -->
             </div>
-            <!-- content-wrapper ends -->
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-dark text-center text-sm-left d-block d-sm-inline-block">Copyright ©
-                                {{ date('Y') }} Usalama. All rights reserved.</span>
+            <div class="modal fade" id="uploadSafe" tabindex="-1" aria-labelledby="uploadSafeLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="uploadSafeLabel">Add Safety Images</h5>
+                            <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div>
+                            <form id="addPolygonForm" action="{{ route('safeimages.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="name">Files</label>
+                                        <input type="file" class="form-control" id="name" name="files" multiple>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="close" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End Footer -->
+            </div>
+            <!-- main-panel ends -->
         </div>
-        <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+        <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
 
