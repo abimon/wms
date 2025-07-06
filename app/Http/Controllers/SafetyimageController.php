@@ -32,7 +32,7 @@ class SafetyimageController extends Controller
         // dd(request()->file('files'));
         $i = 0;
         foreach (request()->file('files') as $file) {
-            $filename = Hash::make(uniqid() . time()) . '.' . ($file->getClientOriginalExtension());
+            $filename = (uniqid() . time()) . '.' . ($file->getClientOriginalExtension());
             $file->move('storage/avatars', $filename);
             Safetyimage::create([
                 "path" => 'storage/safety/'.$filename

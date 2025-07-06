@@ -66,7 +66,7 @@ class TripController extends Controller
             'trip_id' => $trip->id,
             'driver' => $shift ? ($shift->driver->avatar) : null,
             'image' => $image->path,
-            'polygons' => $zones
+            'polygons' => json_encode($zones)
         ]);
     }
 
