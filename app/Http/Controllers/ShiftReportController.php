@@ -29,36 +29,38 @@ class ShiftReportController extends Controller
     public function store()
     {
         try {
-            ShiftReport::create([
-                'shift_id'=>request('shift_id'),
-                'start_time'=>request('start_time'),
-                'start_location'=>request('start_location'),
-                'end_time' => request('end_time'),
-                'end_location' => request('end_location'),
-                'direction'=>request('direction'),
-                'accuracy'=>request('accuracy'),
-                'type'=>request('type')
-            ]);
+            if (ShiftReport::where([['shift_id', request('shift_id')], ['start_time', request('start_time')]])->count() == 0) {
+                ShiftReport::create([
+                    'shift_id' => request('shift_id'),
+                    'start_time' => request('start_time'),
+                    'start_location' => request('start_location'),
+                    'end_time' => request('end_time'),
+                    'end_location' => request('end_location'),
+                    'direction' => request('direction'),
+                    'accuracy' => request('accuracy'),
+                    'type' => request('type')
+                ]);
+            }
             return response()->json([
-                'status'=> true, 
-                'message'=> 'Shift Report Created'
-            ],200);
+                'status' => true,
+                'message' => 'Shift Report Created'
+            ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                'status'=> false,
-                'message'=> $th->getMessage()
+                'status' => false,
+                'message' => $th->getMessage()
             ]);
         }
     }
     public function show($id)
     {
         try {
-            $shiftReport = ShiftReport::where('shift_id',$id)->get();
+            $shiftReport = ShiftReport::where('shift_id', $id)->get();
             return  $shiftReport;
         } catch (\Throwable $th) {
             return response()->json([
-                'status'=> false,
-                'message'=> $th->getMessage()
+                'status' => false,
+                'message' => $th->getMessage()
             ]);
         }
     }
